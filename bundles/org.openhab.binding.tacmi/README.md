@@ -8,8 +8,8 @@ These modes are:
 
 Via a "Schema API Page"
 
-- Read values from output nodes
-- Change values for controllable nodes
+  * Read values from output nodes
+  * Change values for controllable nodes
 
 CoE (CAN over Ethernet) Connection
 
