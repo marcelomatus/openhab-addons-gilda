@@ -92,8 +92,8 @@ public class TACmiJsonHandler extends BaseThingHandler {
             return;
         }
 
-        if (config.pollInterval <= 10) {
-            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR, "Pollintervall to low");
+        if (config.pollInterval < 10) {
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR, "Poll interval to low");
             return;
         }
 
