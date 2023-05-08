@@ -264,7 +264,14 @@ The channels are kept consistent as much as possible from brand to brand to make
 | `tooDarkAlarm` | Switch (read only) | ONVIF cameras only will reflect the status of the ONVIF event of the same name. |
 | `pollImage` | Switch | This control can be used to manually start and stop using your CPU to create snapshots from a RTSP source. If you have a snapshot URL setup in the binding, only then can this control can be used to update the Image channel. |
 | `zoom` | Dimmer | Works with ONVIF cameras that can be moved. |
-
+| `acceptedCardNumber` | String (read only) | This channel shows the last accepted access card number that opened the door. The channel doesn't show rejected/unauthorized cards. |
+| `unacceptedCardNumber` | String (read only) | This channel shows the last unaccepted access card number that was read.
+| `doorUnlock` | Switch | This channel could reflect door lock state and at the same time send commands to door lock. Note that under some conditions doorphone doesn't send "lock off" message, so it's better to add expiration timer to corresponding item. |
+| `doorContact` | Switch (read only) | Reflects door open/closed contact state.
+| `exitButton` | Switch (read only) | Reflects exit button state. This could be used to check for exit button's long clicks/double clicks, so the button could control other gates connected to openHAB, or outdoor lights.
+| `exitButtonEnable` | Switch | This channel could be used to disable the exit button to provide additional security at night or when noone is home.
+| `motionDetectionLevel` | Number | Controls camera's built-in motion detection sensitivity.
+| `magneticLockWarning` | Switch (read only) | This alarm will trigger if the door was opened while the lock is closed, signalling possible intrusion alarm.
 ## Moving PTZ Cameras
 
 To move a camera with this binding you need an ONVIF camera that supports one of the following:
@@ -362,6 +369,7 @@ There are a number of ways to use snapshots with this binding.
 
 - Use the cameras URL so it passes from the camera directly to your end device. ie a tablet.
 This is always the best option if it works.
+
 - Request a snapshot with the URL `http://openhabIP:8080/ipcamera/{cameraUID}/ipcamera.jpg`.
 The IP is for your openHAB server not the camera.
 If you find the snapshot is old, you can set the `gifPreroll` to a number above 0 and this forces the camera to keep updating the stored JPG in RAM.
@@ -572,8 +580,7 @@ Webview url="http://192.168.6.4:8080/static/html/file.html" height=5
             <video playsinline autoplay muted controls style="width: 100%; " src="http://openHAB:8080/ipcamera/{cameraUID}/ipcamera.m3u8" />
         </div>
     </body>
-</html> 
-
+</html>
 ```
 
 ## How to Cast a Camera
@@ -703,13 +710,13 @@ If you use the `Create Equipment from Thing` feature to auto create your items, 
 ```java
 
     Text label="BabyMonitor" icon="camera"{
-        Switch item=BabyCam_GoToPreset icon=movecontrol label="Camera Direction" mappings=[1="Room", 2="Chair", 3="Cot"]            
-        Text label="Advanced Controls" icon="settings"{ 
+        Switch item=BabyCam_GoToPreset icon=movecontrol label="Camera Direction" mappings=[1="Room", 2="Chair", 3="Cot"]
+        Text label="Advanced Controls" icon="settings"{
             Default item=BabyCam_AutoLED
             Default item=BabyCam_AudioAlarmThreshold icon=recorder
             Switch item=BabyCam_AudioAlarm
             Default item=BabyCam_EnableMotionAlarm
-            Default item=BabyCam_MotionAlarm                                
+            Default item=BabyCam_MotionAlarm
             Slider item=BabyCam_Pan icon=movecontrol
             Slider item=BabyCam_Tilt icon=movecontrol
             Slider item=BabyCam_Zoom icon=zoom
@@ -717,7 +724,7 @@ If you use the `Create Equipment from Thing` feature to auto create your items, 
         Default item=BabyCam_StartHLSStream
         Text label="Mjpeg Stream" icon="camera"{Video url="http://openHAB:8080/ipcamera/BabyCam/ipcamera.mjpeg" encoding="mjpeg"}
         Text label="HLS Stream" icon="camera"{Webview url="http://openHAB:8080/ipcamera/BabyCam/ipcamera.m3u8" height=15}
-        Video url="http://openHAB:8080/ipcamera/BabyCam/autofps.mjpeg" encoding="mjpeg"            
-    }  
+        Video url="http://openHAB:8080/ipcamera/BabyCam/autofps.mjpeg" encoding="mjpeg"
+    }
 
 ```
