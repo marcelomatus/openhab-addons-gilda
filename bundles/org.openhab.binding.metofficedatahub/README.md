@@ -122,48 +122,48 @@ currentHoursForecast**Plus02**#siteScreenTemperature
 
 ### Site API - Daily Forecast Channels
 
-| Channel                         | Type                  | Description                                             |
-|---------------------------------|-----------------------|---------------------------------------------------------|
-| forecastTimestamp               | String                | Time of forecast window start                           |
-| middayWindSpeed10m              | Number:Speed          | 10m Wind Speed at Local Midday                          |
-| midnightWindSpeed10m            | Number:Speed          | 10m Wind Speed at Local Midnight                        |
-| midday10MWindDirection          | Number:Angle          | 10m Wind Direction at Local Midday                      |
-| midnight10MWindDirection        | Number:Angle          | 10m Wind Direction at Local Midnight                    |
-| midday10mWindGust               | Number:Speed          | 10m Wind Gust Speed at Local Midday                     |
-| midnight10mWindGust             | Number:Speed          | 10m Wind Gust Speed at Local Midnight                   |
-| middayVisibility                | Number:Length         | Visibility at Local Midday                              |
-| midnightVisibility              | Number:Length         | Visibility at Local Midnight                            |
-| middayRelativeHumidity          | Number:Dimensionless  | Relative Humidity at Local Midday                       |
-| midnightRelativeHumidity        | Number:Dimensionless  | Relative Humidity at Local Midnight                     |
-| middayMslp                      | Number:Pressure       | Mean Sea Level Pressure at Local Midday                 |
-| midnightMslp                    | Number:Pressure       | Mean Sea Level Pressure at Local Midnight               |
-| maxUvIndex                      | Number:Dimensionless  | Day Maximum UV Index                                    |
-| dayUpperBoundMaxTemp            | Number:Temperature    | Upper Bound on Day Maximum Screen Air Temperature       |
-| nightUpperBoundMinTemp          | Number:Temperature    | Upper Bound on Night Minimum Screen Air Temperature     |
-| dayLowerBoundMaxTemp            | Number:Temperature    | Lower Bound on Day Minimum Screen Air Temperature       |
-| nightLowerBoundMinTemp          | Number:Temperature    | Lower Bound on Night Minimum Screen Air Temperature     |
-| dayMaxFeelsLikeTemp             | Number:Temperature    | Day Maximum Feels Like Air Temperature                  |
-| nightMinFeelsLikeTemp           | Number:Temperature    | Night Minimum Feels Like Air Temperature                |
-| dayMaxScreenTemperature         | Number:Temperature    | Day Maximum Screen Air Temperature                      |
-| nightMinScreenTemperature       | Number:Temperature    | Night Minimum Screen Air Temperature                    |
-| dayUpperBoundMaxFeelsLikeTemp   | Number:Temperature    | Upper Bound on Day Maximum Feels Like Air Temperature   |
-| nightUpperBoundMinFeelsLikeTemp | Number:Temperature    | Upper Bound on Night Minimum Feels Like Air Temperature |
-| dayLowerBoundMaxFeelsLikeTemp   | Number:Temperature    | Lower Bound on Day Maximum Feels Like Air Temperature   |
-| nightLowerBoundMinFeelsLikeTemp | Number:Temperature    | Lower Bound on Night Minimum Feels Like Air Temperature |
-| dayProbabilityOfPrecipitation   | Number:Dimensionless  | Probability of Precipitation During The Day             |
-| nightProbabilityOfPrecipitation | Number:Dimensionless  | Probability of Precipitation During The Night           |
-| dayProbabilityOfSnow            | Number:Dimensionless  | Probability of Snow During The Day                      |
-| nightProbabilityOfSnow          | Number:Dimensionless  | Probability of Snow During The Night                    |
-| dayProbabilityOfHeavySnow       | Number:Dimensionless  | Probability of Heavy Snow During The Day                |
-| nightProbabilityOfHeavySnow     | Number:Dimensionless  | Probability of Heavy Snow During The Night              |
-| dayProbabilityOfRain            | Number:Dimensionless  | Probability of Rain During The Day                      |
-| nightProbabilityOfRain          | Number:Dimensionless  | Probability of Rain During The Night                    |
-| dayProbabilityOfHeavyRain       | Number:Dimensionless  | Probability of Heavy Rain During The Day                |
-| nightProbabilityOfHeavyRain     | Number:Dimensionless  | Probability of Heavy Rain During The Night              |
-| dayProbabilityOfHail            | Number:Dimensionless  | Probability of Hail During The Day                      |
-| nightProbabilityOfHail          | Number:Dimensionless  | Probability of Hail During The Night                    |
-| dayProbabilityOfSferics         | Number:Dimensionless  | Probability of Sferics During The Day                   |
-| nightProbabilityOfSferics       | Number:Dimensionless  | Probability of Sferics During The Night                 |
+| Channel                         | Type                  | Description                                             | MET Office Data Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+|---------------------------------|-----------------------|---------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| forecastTimestamp               | String                | Time of forecast window start                           | Calculated from the MET provided UTZ time of when the forecast is applicable, mapped to the local system TZ.                                                                                                                                                                                                                                                                                                                            |
+| middayWindSpeed10m -            | Number:Speed          | 10m Wind Speed at Local Midday                          | Mean wind speed is equivalent to the mean speed observed over the 10 minutes preceding the validity time. 10m wind is the considered surface wind.                                                                                                                                                                                                                                                                                      |
+| midnightWindSpeed10m            | Number:Speed          | 10m Wind Speed at Local Midnight                        | Mean wind speed is equivalent to the mean speed observed over the 10 minutes preceding the validity time. 10m wind is the considered surface wind.                                                                                                                                                                                                                                                                                      |
+| midday10MWindDirection          | Number:Angle          | 10m Wind Direction at Local Midday                      | Mean wind direction is equivalent to the mean direction observed over the 10 minutes preceding the validity time. In meteorological reports the direction of the wind vector is given as the direction from which it is blowing. 10m wind is the considered surface wind.                                                                                                                                                               |
+| midnight10MWindDirection        | Number:Angle          | 10m Wind Direction at Local Midnight                    | Mean wind direction is equivalent to the mean direction observed over the 10 minutes preceding the validity time. In meteorological reports the direction of the wind vector is given as the direction from which it is blowing. 10m wind is the considered surface wind.                                                                                                                                                               |
+| midday10mWindGust               | Number:Speed          | 10m Wind Gust Speed at Local Midday                     | The gust speed is equivalent to the maximum 3 second mean wind speed observed over the 10 minutes preceding the validity time. 10m wind is the considered surface wind.                                                                                                                                                                                                                                                                 |
+| midnight10mWindGust             | Number:Speed          | 10m Wind Gust Speed at Local Midnight                   | The gust speed is equivalent to the maximum 3 second mean wind speed observed over the 10 minutes preceding the validity time. 10m wind is the considered surface wind.                                                                                                                                                                                                                                                                 |
+| middayVisibility                | Number:Length         | Visibility at Local Midday                              | Minimal horizontal distance at which a known object can be seen.                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                       |
+| midnightVisibility              | Number:Length         | Visibility at Local Midnight                            | Minimal horizontal distance at which a known object can be seen.                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| middayRelativeHumidity          | Number:Dimensionless  | Relative Humidity at Local Midday                       | Stevenson screen height is approximately 1.5m above ground level.                                                                                                                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                      |
+| midnightRelativeHumidity        | Number:Dimensionless  | Relative Humidity at Local Midnight                     | Stevenson screen height is approximately 1.5m above ground level.                                                                                                                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                      |
+| middayMslp                      | Number:Pressure       | Mean Sea Level Pressure at Local Midday                 | Air pressure at mean sea level which is close to the geoid in sea areas. Air pressure at sea level is the quantity often abbreviated as MSLP or PMSL.                                                                                                                                                                                                                                                                                   |
+| midnightMslp                    | Number:Pressure       | Mean Sea Level Pressure at Local Midnight               | Air pressure at mean sea level which is close to the geoid in sea areas. Air pressure at sea level is the quantity often abbreviated as MSLP or PMSL.                                                                                                                                                                                                                                                                                   |
+| maxUvIndex                      | Number:Dimensionless  | Day Maximum UV Index                                    | Usually a value from 0 to 13 but higher values are possible in extreme situations. Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                                                                                    |
+| dayUpperBoundMaxTemp            | Number:Temperature    | Upper Bound on Day Maximum Screen Air Temperature       | This is the upper bound for the maximum value over the day based on the ensemble spread. It is actually given by the 97.5 percentile. This means there is a 97.5% probability that the actual figure will be below this upper bound figure. Stevenson screen height is approximately 1.5m above ground level. Daytime is defined as those forecast times that fall between local dawn and dusk.                                         |
+| nightUpperBoundMinTemp          | Number:Temperature    | Upper Bound on Night Minimum Screen Air Temperature     | This is the upper bound for the minimum value over the night based on the ensemble spread. It is actually given by the 97.5 percentile. This means there is a 97.5% probability that the actual figure will be below this upper bound figure. Stevenson screen height is approximately 1.5m above ground level. Night-time is defined as those forecast times that fall between local dusk and dawn.                                    |
+| dayLowerBoundMaxTemp            | Number:Temperature    | Lower Bound on Day Minimum Screen Air Temperature       | This is the lower bound for the maximum value over the day based on the ensemble spread. It is actually given by the 2.5 percentile. This means there is a 97.5% probability that the actual figure will be above this lower bound figure. Stevenson screen height is approximately 1.5m above ground level. Daytime is defined as those forecast times that fall between local dawn and dusk.                                          |
+| nightLowerBoundMinTemp          | Number:Temperature    | Lower Bound on Night Minimum Screen Air Temperature     | This is the lower bound for the minimum value over the night based on the ensemble spread. It is actually given by the 2.5 percentile. This means there is a 97.5% probability that the actual figure will be above this lower bound figure. Stevenson screen height is approximately 1.5m above ground level. Night-time is defined as those forecast times that fall between local dusk and dawn.                                     |
+| dayMaxFeelsLikeTemp             | Number:Temperature    | Day Maximum Feels Like Air Temperature                  | This is the most likely maximum value over the day based on the ensemble spread. This is the temperature it feels like taking into account humidity and wind chill but not radiation. Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                 |
+| nightMinFeelsLikeTemp           | Number:Temperature    | Night Minimum Feels Like Air Temperature                | This is the most likely minimum value over the night based on the ensemble spread. This is the temperature it feels like taking into account humidity and wind chill but not radiation. Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                            |
+| dayMaxScreenTemperature         | Number:Temperature    | Day Maximum Screen Air Temperature                      | This is the most likely maximum value over the day based on the ensemble spread. Stevenson screen height is approximately 1.5m above ground level. Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                    |
+| nightMinScreenTemperature       | Number:Temperature    | Night Minimum Screen Air Temperature                    | This is the most likely minimum value over the night based on the ensemble spread. Stevenson screen height is approximately 1.5m above ground level. Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                                                               |
+| dayUpperBoundMaxFeelsLikeTemp   | Number:Temperature    | Upper Bound on Day Maximum Feels Like Air Temperature   | This is the upper bound for the maximum value over the day based on the ensemble spread. It is actually given by the 97.5 percentile. This means there is a 97.5% probability that the actual figure will be below this upper bound figure. This is the temperature it feels like taking into account humidity and wind chill but not radiation. Daytime is defined as those forecast times that fall between local dawn and dusk.      |
+| nightUpperBoundMinFeelsLikeTemp | Number:Temperature    | Upper Bound on Night Minimum Feels Like Air Temperature | This is the upper bound for the minimum value over the night based on the ensemble spread. It is actually given by the 97.5 percentile. This means there is a 97.5% probability that the actual figure will be below this upper bound figure. This is the temperature it feels like taking into account humidity and wind chill but not radiation. Night-time is defined as those forecast times that fall between local dusk and dawn. |
+| dayLowerBoundMaxFeelsLikeTemp   | Number:Temperature    | Lower Bound on Day Maximum Feels Like Air Temperature   | This is the lower bound for the maximum value over the day based on the ensemble spread. It is actually given by the 2.5 percentile. This means there is a 97.5% probability that the actual figure will be above this lower bound figure. This is the temperature it feels like taking into account humidity and wind chill but not radiation. Daytime is defined as those forecast times that fall between local dawn and dusk.       |
+| nightLowerBoundMinFeelsLikeTemp | Number:Temperature    | Lower Bound on Night Minimum Feels Like Air Temperature | This is the lower bound for the minimum value over the night based on the ensemble spread. It is actually given by the 2.5 percentile. This means there is a 97.5% probability that the actual figure will be above this lower bound figure. This is the temperature it feels like taking into account humidity and wind chill but not radiation. Night-time is defined as those forecast times that fall between local dusk and dawn.  |
+| dayProbabilityOfPrecipitation   | Number:Dimensionless  | Probability of Precipitation During The Day             | Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                                                                                                                                                                       |
+| nightProbabilityOfPrecipitation | Number:Dimensionless  | Probability of Precipitation During The Night           | Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                                                                                                                                                                                                                    |
+| dayProbabilityOfSnow            | Number:Dimensionless  | Probability of Snow During The Day                      | Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                                                                                                                                                                       |
+| nightProbabilityOfSnow          | Number:Dimensionless  | Probability of Snow During The Night                    | Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                                                                                                                                                                                                                    |
+| dayProbabilityOfHeavySnow       | Number:Dimensionless  | Probability of Heavy Snow During The Day                | Heavy snow is defined as >1mm/hr liquid water equivalent and is approximately equivilent to >1cm snow per hour. Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                                                       |
+| nightProbabilityOfHeavySnow     | Number:Dimensionless  | Probability of Heavy Snow During The Night              | Heavy snow is defined as >1mm/hr liquid water equivalent and is approximately equivilent to >1cm snow per hour. Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                                                                                                    |
+| dayProbabilityOfRain            | Number:Dimensionless  | Probability of Rain During The Day                      | Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                                                                                                                                                                       |
+| nightProbabilityOfRain          | Number:Dimensionless  | Probability of Rain During The Night                    | Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                                                                                                                                                                                                                    |
+| dayProbabilityOfHeavyRain       | Number:Dimensionless  | Probability of Heavy Rain During The Day                | Heavy rain is defined as >1mm/hr. Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                                                                                                                                     |
+| nightProbabilityOfHeavyRain     | Number:Dimensionless  | Probability of Heavy Rain During The Night              | Heavy rain is defined as >1mm/hr. Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                                                                                                                                                                                  |
+| dayProbabilityOfHail            | Number:Dimensionless  | Probability of Hail During The Day                      | Daytime is defined as those forecast times that fall between local dawn and dusk.                                                                                                                                                                                                                                                                                                                                                       |
+| nightProbabilityOfHail          | Number:Dimensionless  | Probability of Hail During The Night                    | Night-time is defined as those forecast times that fall between local dusk and dawn.                                                                                                                                                                                                                                                                                                                                                    |
+| dayProbabilityOfSferics         | Number:Dimensionless  | Probability of Sferics During The Day                   | This is the probability of a strike within a radius of 50km.                                                                                                                                                                                                                                                                                                                                                                            |
+| nightProbabilityOfSferics       | Number:Dimensionless  | Probability of Sferics During The Night                 | This is the probability of a strike within a radius of 50km.                                                                                                                                                                                                                                                                                                                                                                            |
 
 #### Channel groups for Site API - Daily Forecast Channels:
 
@@ -225,7 +225,7 @@ Number:Temperature    ForecastLondonPlus01MaxTemp                       (gLondon
 Number:Temperature    ForecastLondonPlus01FeelsLikeTemp                 (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#feelsLikeTemperature" }
 Number:Dimensionless  ForecastLondonPlus01RelHumidity                   (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#screenRelativeHumidity" }
 Number:Length         ForecastLondonPlus01Visibility                    (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#visibility" }
-Number:Speed          ForecastLondonPrecipitationRate                   (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#precipRate",units="mm/h" }
+Number:Speed          ForecastLondonPlus01PrecipitationRate             (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#precipRate",units="mm/h" }
 Number:Dimensionless  ForecastLondonPlus01PrecipitationProb             (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#probOfPrecipitation" }
 Number:Length         ForecastLondonPlus01PrecipitationAmount           (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#totalPrecipAmount" }
 Number:Length         ForecastLondonPlus01SnowAmount                    (gLondonNextHour) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentHoursForecastPlus01#totalSnowAmount" }
@@ -262,7 +262,7 @@ Number:Temperature    ForecastLondonNightUpperBoundMinTemp          (gLondonCurr
 Number:Temperature    ForecastLondonDayLowerBoundMaxTemp            (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#dayLowerBoundMaxTemp" }
 Number:Temperature    ForecastLondonNightLowerBoundMinTemp          (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#nightLowerBoundMinTemp" }
 Number:Temperature    ForecastLondonDayMaxFeelsLikeTemp             (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#dayMaxFeelsLikeTemp" }
-Number:Temperature    ForecastLondonNightMaxFeelsLikeTemp           (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#nightMaxFeelsLikeTemp" }
+Number:Temperature    ForecastLondonNightMinFeelsLikeTemp           (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#nightMinFeelsLikeTemp" }
 Number:Temperature    ForecastLondonDayMaxScreenTemperature         (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#dayMaxScreenTemperature" }
 Number:Temperature    ForecastLondonNightMinScreenTemperature       (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#nightMinScreenTemperature" }
 Number:Temperature    ForecastLondonDayUpperBoundMaxFeelsLikeTemp   (gLondonCurrentDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecast#dayUpperBoundMaxFeelsLikeTemp" }
@@ -304,7 +304,7 @@ Number:Temperature    ForecastLondonPlus01NightUpperBoundMinTemp          (gLond
 Number:Temperature    ForecastLondonPlus01DayLowerBoundMaxTemp            (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#dayLowerBoundMaxTemp" }
 Number:Temperature    ForecastLondonPlus01NightLowerBoundMinTemp          (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#nightLowerBoundMinTemp" }
 Number:Temperature    ForecastLondonPlus01DayMaxFeelsLikeTemp             (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#dayMaxFeelsLikeTemp" }
-Number:Temperature    ForecastLondonPlus01NightMaxFeelsLikeTemp           (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#nightMaxFeelsLikeTemp" }
+Number:Temperature    ForecastLondonPlus01NightMinFeelsLikeTemp           (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#nightMinFeelsLikeTemp" }
 Number:Temperature    ForecastLondonPlus01DayMaxScreenTemperature         (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#dayMaxScreenTemperature" }
 Number:Temperature    ForecastLondonPlus01NightMinScreenTemperature       (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#nightMinScreenTemperature" }
 Number:Temperature    ForecastLondonPlus01DayUpperBoundMaxFeelsLikeTemp   (gLondonNextDay) { channel="metofficedatahub:siteSpecificApi:metoffice:londonForecast:currentDailyForecastPlus01#dayUpperBoundMaxFeelsLikeTemp" }
@@ -379,86 +379,86 @@ Frame {
 
 ```perl
 Frame {
-   Text                  item=ForecastLondonDailyForecastTs
-   Number:Speed          item=ForecastLondonMiddayWindSpeed10m
-   Number:Speed          item=ForecastLondonMidnightWindSpeed10m
-   Number:Angle          item=ForecastLondonMidday10MWindDirection
-   Number:Angle          item=ForecastLondonMidnight10MWindDirection
-   Number:Speed          item=ForecastLondonMidday10mWindGust
-   Number:Speed          item=ForecastLondonMidnight10mWindGust
-   Number:Length         item=ForecastLondonMiddayVisibility
-   Number:Length         item=ForecastLondonMidnightVisibility
-   Number:Dimensionless  item=ForecastLondonMiddayRelativeHumidity
-   Number:Dimensionless  item=ForecastLondonMidnightRelativeHumidity
-   Number:Pressure       item=ForecastLondonMiddayMslp
-   Number:Pressure       item=ForecastLondonMidnightMslp
-   Number:Dimensionless  item=ForecastLondonMaxUvIndex
-   Number:Temperature    item=ForecastLondonNightUpperBoundMinTemp
-   Number:Temperature    item=ForecastLondonDayLowerBoundMaxTemp
-   Number:Temperature    item=ForecastLondonNightLowerBoundMinTemp
-   Number:Temperature    item=ForecastLondonDayMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonNightMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonDayMaxScreenTemperature
-   Number:Temperature    item=ForecastLondonNightMinScreenTemperature
-   Number:Temperature    item=ForecastLondonDayUpperBoundMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonNightUpperBoundMinFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonDayLowerBoundMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonNightLowerBoundMinFeelsLikeTemp
-   Number:Dimensionless  item=ForecastLondonDayProbabilityOfPrecipitation
-   Number:Dimensionless  item=ForecastLondonNightProbabilityOfPrecipitation
-   Number:Dimensionless  item=ForecastLondonDayProbabilityOfSnow
-   Number:Dimensionless  item=ForecastLondonNightProbabilityOfSnow
-   Number:Dimensionless  item=ForecastLondonDayProbabilityOfHeavySnow
-   Number:Dimensionless  item=ForecastLondonNightProbabilityOfHeavySnow
-   Number:Dimensionless  item=ForecastLondonDayProbabilityOfRain
-   Number:Dimensionless  item=ForecastLondonNightProbabilityOfRain
-   Number:Dimensionless  item=ForecastLondonDayProbabilityOfHeavyRain
-   Number:Dimensionless  item=ForecastLondonNightProbabilityOfHeavyRain
-   Number:Dimensionless  item=ForecastLondonDayProbabilityOfHail
-   Number:Dimensionless  item=ForecastLondonNightProbabilityOfHail
-   Number:Dimensionless  item=ForecastLondonDayProbabilityOfSferics
-   Number:Dimensionless  item=ForecastLondonNightProbabilityOfSferics
+   Text  item=ForecastLondonDailyForecastTs icon="time"
+   Text  item=ForecastLondonMiddayWindSpeed10m icon="wind"
+   Text  item=ForecastLondonMidnightWindSpeed10m icon="wind"
+   Text  item=ForecastLondonMidday10MWindDirection icon="wind"
+   Text  item=ForecastLondonMidnight10MWindDirection icon="wind"
+   Text  item=ForecastLondonMidday10mWindGust icon="wind"
+   Text  item=ForecastLondonMidnight10mWindGust icon="wind"
+   Text  item=ForecastLondonMiddayVisibility icon="sun_clouds"
+   Text  item=ForecastLondonMidnightVisibility icon="sun_clouds"
+   Text  item=ForecastLondonMiddayRelativeHumidity icon="humidity"
+   Text  item=ForecastLondonMidnightRelativeHumidity icon="humidity"
+   Text  item=ForecastLondonMiddayMslp icon="pressure"
+   Text  item=ForecastLondonMidnightMslp icon="pressure"
+   Text  item=ForecastLondonMaxUvIndex icon="pressure"
+   Text  item=ForecastLondonNightUpperBoundMinTemp icon="temperature"
+   Text  item=ForecastLondonDayLowerBoundMaxTemp icon="temperature"
+   Text  item=ForecastLondonNightLowerBoundMinTemp icon="temperature"
+   Text  item=ForecastLondonDayMaxFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonNightMinFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonDayMaxScreenTemperature icon="temperature"
+   Text  item=ForecastLondonNightMinScreenTemperature icon="temperature"
+   Text  item=ForecastLondonDayUpperBoundMaxFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonNightUpperBoundMinFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonDayLowerBoundMaxFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonNightLowerBoundMinFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonDayProbabilityOfPrecipitation icon="rain"
+   Text  item=ForecastLondonNightProbabilityOfPrecipitation icon="rain"
+   Text  item=ForecastLondonDayProbabilityOfSnow icon="rain"
+   Text  item=ForecastLondonNightProbabilityOfSnow icon="rain"
+   Text  item=ForecastLondonDayProbabilityOfHeavySnow icon="rain"
+   Text  item=ForecastLondonNightProbabilityOfHeavySnow icon="rain"
+   Text  item=ForecastLondonDayProbabilityOfRain icon="rain"
+   Text  item=ForecastLondonNightProbabilityOfRain icon="rain"
+   Text  item=ForecastLondonDayProbabilityOfHeavyRain icon="rain"
+   Text  item=ForecastLondonNightProbabilityOfHeavyRain icon="rain"
+   Text  item=ForecastLondonDayProbabilityOfHail icon="rain"
+   Text  item=ForecastLondonNightProbabilityOfHail icon="rain"
+   Text  item=ForecastLondonDayProbabilityOfSferics icon="line"
+   Text  item=ForecastLondonNightProbabilityOfSferics icon="line"
 }
 
 Frame {
-   Text                  item=ForecastLondonPlus01DailyForecastTs
-   Number:Speed          item=ForecastLondonPlus01MiddayWindSpeed10m
-   Number:Speed          item=ForecastLondonPlus01MidnightWindSpeed10m
-   Number:Angle          item=ForecastLondonPlus01Midday10MWindDirection
-   Number:Angle          item=ForecastLondonPlus01Midnight10MWindDirection
-   Number:Speed          item=ForecastLondonPlus01Midday10mWindGust
-   Number:Speed          item=ForecastLondonPlus01Midnight10mWindGust
-   Number:Length         item=ForecastLondonPlus01MiddayVisibility
-   Number:Length         item=ForecastLondonPlus01MidnightVisibility
-   Number:Dimensionless  item=ForecastLondonPlus01MiddayRelativeHumidity
-   Number:Dimensionless  item=ForecastLondonPlus01MidnightRelativeHumidity
-   Number:Pressure       item=ForecastLondonPlus01MiddayMslp
-   Number:Pressure       item=ForecastLondonPlus01MidnightMslp
-   Number:Dimensionless  item=ForecastLondonPlus01MaxUvIndex
-   Number:Temperature    item=ForecastLondonPlus01NightUpperBoundMinTemp
-   Number:Temperature    item=ForecastLondonPlus01DayLowerBoundMaxTemp
-   Number:Temperature    item=ForecastLondonPlus01NightLowerBoundMinTemp
-   Number:Temperature    item=ForecastLondonPlus01DayMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonPlus01NightMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonPlus01DayMaxScreenTemperature
-   Number:Temperature    item=ForecastLondonPlus01NightMinScreenTemperature
-   Number:Temperature    item=ForecastLondonPlus01DayUpperBoundMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonPlus01NightUpperBoundMinFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonPlus01DayLowerBoundMaxFeelsLikeTemp
-   Number:Temperature    item=ForecastLondonPlus01NightLowerBoundMinFeelsLikeTemp
-   Number:Dimensionless  item=ForecastLondonPlus01DayProbabilityOfPrecipitation
-   Number:Dimensionless  item=ForecastLondonPlus01NightProbabilityOfPrecipitation
-   Number:Dimensionless  item=ForecastLondonPlus01DayProbabilityOfSnow
-   Number:Dimensionless  item=ForecastLondonPlus01NightProbabilityOfSnow
-   Number:Dimensionless  item=ForecastLondonPlus01DayProbabilityOfHeavySnow
-   Number:Dimensionless  item=ForecastLondonPlus01NightProbabilityOfHeavySnow
-   Number:Dimensionless  item=ForecastLondonPlus01DayProbabilityOfRain
-   Number:Dimensionless  item=ForecastLondonPlus01NightProbabilityOfRain
-   Number:Dimensionless  item=ForecastLondonPlus01DayProbabilityOfHeavyRain
-   Number:Dimensionless  item=ForecastLondonPlus01NightProbabilityOfHeavyRain
-   Number:Dimensionless  item=ForecastLondonPlus01DayProbabilityOfHail
-   Number:Dimensionless  item=ForecastLondonPlus01NightProbabilityOfHail
-   Number:Dimensionless  item=ForecastLondonPlus01DayProbabilityOfSferics
-   Number:Dimensionless  item=ForecastLondonPlus01NightProbabilityOfSferics
+   Text  item=ForecastLondonPlus01DailyForecastTs icon="time"
+   Text  item=ForecastLondonPlus01MiddayWindSpeed10m icon="wind"
+   Text  item=ForecastLondonPlus01MidnightWindSpeed10m icon="wind"
+   Text  item=ForecastLondonPlus01Midday10MWindDirection icon="wind"
+   Text  item=ForecastLondonPlus01Midnight10MWindDirection icon="wind"
+   Text  item=ForecastLondonPlus01Midday10mWindGust icon="wind"
+   Text  item=ForecastLondonPlus01Midnight10mWindGust icon="wind"
+   Text  item=ForecastLondonPlus01MiddayVisibility icon="sun_clouds"
+   Text  item=ForecastLondonPlus01MidnightVisibility icon="sun_clouds"
+   Text  item=ForecastLondonPlus01MiddayRelativeHumidity icon="humidity"
+   Text  item=ForecastLondonPlus01MidnightRelativeHumidity icon="humidity"
+   Text  item=ForecastLondonPlus01MiddayMslp icon="pressure"
+   Text  item=ForecastLondonPlus01MidnightMslp icon="pressure"
+   Text  item=ForecastLondonPlus01MaxUvIndex icon="pressure"
+   Text  item=ForecastLondonPlus01NightUpperBoundMinTemp icon="temperature"
+   Text  item=ForecastLondonPlus01DayLowerBoundMaxTemp icon="temperature"
+   Text  item=ForecastLondonPlus01NightLowerBoundMinTemp icon="temperature"
+   Text  item=ForecastLondonPlus01DayMaxFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonPlus01NightMinFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonPlus01DayMaxScreenTemperature icon="temperature"
+   Text  item=ForecastLondonPlus01NightMinScreenTemperature icon="temperature"
+   Text  item=ForecastLondonPlus01DayUpperBoundMaxFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonPlus01NightUpperBoundMinFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonPlus01DayLowerBoundMaxFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonPlus01NightLowerBoundMinFeelsLikeTemp icon="temperature"
+   Text  item=ForecastLondonPlus01DayProbabilityOfPrecipitation icon="rain"
+   Text  item=ForecastLondonPlus01NightProbabilityOfPrecipitation icon="rain"
+   Text  item=ForecastLondonPlus01DayProbabilityOfSnow icon="rain"
+   Text  item=ForecastLondonPlus01NightProbabilityOfSnow icon="rain"
+   Text  item=ForecastLondonPlus01DayProbabilityOfHeavySnow icon="rain"
+   Text  item=ForecastLondonPlus01NightProbabilityOfHeavySnow icon="rain"
+   Text  item=ForecastLondonPlus01DayProbabilityOfRain icon="rain"
+   Text  item=ForecastLondonPlus01NightProbabilityOfRain icon="rain"
+   Text  item=ForecastLondonPlus01DayProbabilityOfHeavyRain icon="rain"
+   Text  item=ForecastLondonPlus01NightProbabilityOfHeavyRain icon="rain"
+   Text  item=ForecastLondonPlus01DayProbabilityOfHail icon="rain"
+   Text  item=ForecastLondonPlus01NightProbabilityOfHail icon="rain"
+   Text  item=ForecastLondonPlus01DayProbabilityOfSferics icon="line"
+   Text  item=ForecastLondonPlus01NightProbabilityOfSferics icon="line"
 }
 ```
