@@ -106,6 +106,9 @@ public class VeSyncDiscoveryService extends AbstractDiscoveryService
 
     @Override
     protected void startScan() {
+        if (bridgeHandler == null) {
+            return;
+        }
         // If the bridge is not online no other thing devices can be found, so no reason to scan at this moment.
         removeOlderResults(getTimestampOfLastScan());
         if (ThingStatus.ONLINE.equals(bridgeHandler.getThing().getStatus())) {
