@@ -105,7 +105,7 @@ public class PercentageValue extends Value {
             }
         } else //
                // On/Off equals 100 or 0 percent
-        if (command instanceof OnOffType onOffCommand) {
+        if (command instanceof OnOffType) {
             return command;
         } else//
               // Increase or decrease by "step"
