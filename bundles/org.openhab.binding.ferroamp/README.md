@@ -1,23 +1,22 @@
 ## ferroamp Binding
 
-The ferroamp binding is used to get live data from ferroamp energy systems.
+The ferroamp binding is used to get live data from Ferroamp energy system.
 
-The binding retrieve data from the different parts of the ferroamp energy system such as:
-
-- `Ehub`: EnergyHub Wall and EnergyHub XL.
-- `Sso`: Solar string optimizer.
-- `Eso`: Bidirectional DC/DC converter for connection of battery.
-- `Esm`: Energy Storage Module.
+The ferroamp binding is compatible with EnergyHub Wall and EnergyHub XL, and use connection to your local EnergyHub via LAN or similar.
+Data and commands are received/sent using MQTT where the user connects to the MQTT broker residing on the EnergyHub.
 
 Binding MQTT must be installed before binding ferroamp is able to use.
 
-Contact ferroamp support to enable MQTT in the EnergyHub and to get Username and Password:
+Contact Ferroamp support to enable MQTT in the EnergyHub and to get Username and Password:
 https://ferroamp.com/om-ferroamp/
 
 ## Supported Things
 
-The ferroamp binding is compatible with EnergyHub Wall and EnergyHub XL, and use connection to your local Ehub via LAN or similar.
-Data and commands are received/sent using MQTT where the user connects to the MQTT broker residing on the ferroamp system.
+The binding retrieves data from the different parts of the Ferroamp energy system such as:
+- `Ehub`: EnergyHub Wall and EnergyHub XL.
+- `Sso`: Solar string optimizer.
+- `Eso`: Bidirectional DC/DC converter for connection of battery.
+- `Esm`: Energy Storage Module.
 
 ## Discovery
 
@@ -27,7 +26,7 @@ Discovery is not supported.
 
 Installing of binding ferroamp and configuration of it can be done in the UI.
 
-The following configuration-parameters are available for the `ferroamp` binding.
+The following configuration-parameters are available for the ferroamp binding.
 
 | Name            | Type    | Description                           | Default | Required | Advanced |
 |-----------------|---------|---------------------------------------|---------|----------|----------|
@@ -38,7 +37,7 @@ The following configuration-parameters are available for the `ferroamp` binding.
 
 ## Channels
 
-The following channels are available for reading, for the `ferroamp` binding.
+The following channels are available for reading, for the ferroamp binding.
 
 | Channel Type ID      | Item Type                  | Read/Write | Description                              |
 |---------------------------------------------------|------------|------------------------------------------|
@@ -183,7 +182,7 @@ The following channels are available for reading, for the `ferroamp` binding.
 | esm-status           | String                     | R          | Dependent on battery manufacturer        |
 | esm-ts               | String                     | R          | Time stamp when message was published    |
 
-The following channels are available for `ferroamp` energy system configuration. Please, see Ferroamp documentation for more details.
+The following channels are available for Ferroamp energy system configuration. Please, see Ferroamp documentation for more details.
 
 | Channel Type ID      | Item Type                  | Read/Write | Description                              |
 |---------------------------------------------------|------------|------------------------------------------|
@@ -199,5 +198,5 @@ Thing ferroamp:energyhub:myenergyhub [ hostName="'energyhub-ip'", userName="'myU
 
 ## Items
 
-Number:Energy Ferroamp "ehub-wloadconsq-l1" <energy> { channel="ferroamp:energyhub:myenergyhub:ehub-wloadconsq-l1" }
-String Ferroamp "request-charge" <energy> { channel="ferroamp:energyhub:myenergyhub:request-charge" }
+Number:Energy ferroamp "ehub-wloadconsq-l1" <energy> { channel="ferroamp:energyhub:myenergyhub:ehub-wloadconsq-l1" }
+String ferroamp "request-charge" <energy> { channel="ferroamp:energyhub:myenergyhub:request-charge" }

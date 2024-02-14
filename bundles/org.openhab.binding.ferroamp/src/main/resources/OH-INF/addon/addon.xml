@@ -6,5 +6,6 @@
 	<type>binding</type>
 	<name>ferroamp Binding</name>
 	<description>This is the binding for ferroamp energyhub.</description>
+	<connection>local</connection>
 
 </addon:addon>
