@@ -13,6 +13,7 @@ https://ferroamp.com/om-ferroamp/
 ## Supported Things
 
 The binding retrieves data from the different parts of the Ferroamp energy system such as:
+
 - `Ehub`: EnergyHub Wall and EnergyHub XL.
 - `Sso`: Solar string optimizer.
 - `Eso`: Bidirectional DC/DC converter for connection of battery.
