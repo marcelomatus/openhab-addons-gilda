@@ -96,6 +96,7 @@ public class FerroampHandler extends BaseThingHandler implements MqttMessageSubs
         channelConfigEsm = FerroampChannelConfiguration.getChannelConfigurationEsm();
 
         ferroampConfig = getConfigAs(FerroampConfiguration.class);
+        @SuppressWarnings("null")
         final MqttBrokerConnection ferroampConnection = new MqttBrokerConnection(ferroampConfig.hostName,
                 FerroampBindingConstants.BROKER_PORT, false, false, ferroampConfig.userName);
 
@@ -123,6 +124,7 @@ public class FerroampHandler extends BaseThingHandler implements MqttMessageSubs
     }
 
     // Handles request topic
+    @SuppressWarnings("null")
     private void sendMQTT(String payload) {
         MqttBrokerConnection localConfigurationConnection = ferroampConnection;
         localConfigurationConnection.start();
@@ -134,6 +136,7 @@ public class FerroampHandler extends BaseThingHandler implements MqttMessageSubs
     }
 
     // Handles respective topic type
+    @SuppressWarnings("null")
     private void getMQTT(String topic) {
         MqttBrokerConnection localSubscribeConnection = ferroampConnection;
         localSubscribeConnection.start();

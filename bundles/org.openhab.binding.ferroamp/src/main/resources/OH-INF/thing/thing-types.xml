@@ -6,8 +6,8 @@
 
 	<!-- ferroamp Energyhub Thing Type -->
 	<thing-type id="energyhub">
-		<label>ferroamp Binding Thing</label>
-		<description>Thing for ferroamp Binding</description>
+		<label>Ferroamp Energyhub</label>
+		<description>Ferroamp Energyhub Thing</description>
 		<config-description>
 			<parameter name="hostName" type="text" required="true">
 				<context>network-address</context>

@@ -220,23 +220,23 @@ public class FerroampChannelConfiguration {
         final List<FerroampChannelConfiguration> channelConfigurationSsoS0 = new ArrayList<>();
 
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSORELAYSTATUS_S0, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0RELAYSTATUS, Units.ONE));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTEMP_S0, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0TEMP, Units.ONE));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOWPV_S0, Units.JOULE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0WPV, Units.JOULE));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTS_S0, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0TS, Units.ONE));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUDC_S0, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0UDC, Units.VOLT));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOFAULTCODE_S0, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0FAULTCODE, Units.ONE));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOIPV_S0, Units.AMPERE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0IPV, Units.AMPERE));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUPV_S0, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0UPV, Units.VOLT));
         channelConfigurationSsoS0
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOID_S0, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS0ID, Units.ONE));
         return channelConfigurationSsoS0;
     }
 
@@ -244,23 +244,23 @@ public class FerroampChannelConfiguration {
         final List<FerroampChannelConfiguration> channelConfigurationSsoS1 = new ArrayList<>();
 
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSORELAYSTATUS_S1, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1RELAYSTATUS, Units.ONE));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTEMP_S1, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1TEMP, Units.ONE));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOWPV_S1, Units.JOULE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1WPV, Units.JOULE));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTS_S1, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1TS, Units.ONE));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUDC_S1, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1UDC, Units.VOLT));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOFAULTCODE_S1, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1FAULTCODE, Units.ONE));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOIPV_S1, Units.AMPERE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1IPV, Units.AMPERE));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUPV_S1, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1UPV, Units.VOLT));
         channelConfigurationSsoS1
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOID_S1, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS1ID, Units.ONE));
         return channelConfigurationSsoS1;
     }
 
@@ -268,23 +268,23 @@ public class FerroampChannelConfiguration {
         final List<FerroampChannelConfiguration> channelConfigurationSsoS2 = new ArrayList<>();
 
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSORELAYSTATUS_S2, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2RELAYSTATUS, Units.ONE));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTEMP_S2, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2TEMP, Units.ONE));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOWPV_S2, Units.JOULE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2WPV, Units.JOULE));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTS_S2, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2TS, Units.ONE));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUDC_S2, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2UDC, Units.VOLT));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOFAULTCODE_S2, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2FAULTCODE, Units.ONE));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOIPV_S2, Units.AMPERE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2IPV, Units.AMPERE));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUPV_S2, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2UPV, Units.VOLT));
         channelConfigurationSsoS2
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOID_S2, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS2ID, Units.ONE));
         return channelConfigurationSsoS2;
     }
 
@@ -292,23 +292,23 @@ public class FerroampChannelConfiguration {
         final List<FerroampChannelConfiguration> channelConfigurationSsoS3 = new ArrayList<>();
 
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSORELAYSTATUS_S3, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3RELAYSTATUS, Units.ONE));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTEMP_S3, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3TEMP, Units.ONE));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOWPV_S3, Units.JOULE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3WPV, Units.JOULE));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOTS_S3, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3TS, Units.ONE));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUDC_S3, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3UDC, Units.VOLT));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOFAULTCODE_S3, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3FAULTCODE, Units.ONE));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOIPV_S3, Units.AMPERE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3IPV, Units.AMPERE));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOUPV_S3, Units.VOLT));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3UPV, Units.VOLT));
         channelConfigurationSsoS3
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOID_S3, Units.ONE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_SSOS3ID, Units.ONE));
         return channelConfigurationSsoS3;
     }
 

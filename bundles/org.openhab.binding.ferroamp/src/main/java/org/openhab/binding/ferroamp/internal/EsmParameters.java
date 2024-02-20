@@ -38,9 +38,9 @@ public class EsmParameters {
         final List<String> channelParametersEsm = new ArrayList<>();
         channelParametersEsm.add(new String("soh"));
         channelParametersEsm.add(new String("soc"));
-        channelParametersEsm.add(new String("ratedCapacity"));
+        channelParametersEsm.add(new String("ratedcapacity"));
         channelParametersEsm.add(new String("id"));
-        channelParametersEsm.add(new String("ratedPower"));
+        channelParametersEsm.add(new String("ratedpower"));
         channelParametersEsm.add(new String("status"));
         channelParametersEsm.add(new String("ts"));
         return channelParametersEsm;
