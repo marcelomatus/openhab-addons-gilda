@@ -16,6 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
@@ -146,32 +147,24 @@ public class FerroampHandler extends BaseThingHandler implements MqttMessageSubs
 
         if ("ehubTopic".equals(topic)) {
             localSubscribeConnection.subscribe(FerroampBindingConstants.EHUB_TOPIC, this);
-            if (state.toString().matches("CONNECTED") || establishedConnection) {
-                establishedConnection = true;
-            }
+            establishedConnection = "CONNECTED".matches(state.toString()) || establishedConnection;
         }
         if ("ssoTopic".equals(topic)) {
             localSubscribeConnection.subscribe(FerroampBindingConstants.SSO_TOPIC, this);
-            if (state.toString().matches("CONNECTED") || establishedConnection) {
-                establishedConnection = true;
-            }
+            establishedConnection = "CONNECTED".matches(state.toString()) || establishedConnection;
         }
         if ("esoTopic".equals(topic)) {
             localSubscribeConnection.subscribe(FerroampBindingConstants.ESO_TOPIC, this);
-            if (state.toString().matches("CONNECTED") || establishedConnection) {
-                establishedConnection = true;
-            }
+            establishedConnection = "CONNECTED".matches(state.toString()) || establishedConnection;
         }
         if ("esmTopic".equals(topic)) {
             localSubscribeConnection.subscribe(FerroampBindingConstants.ESM_TOPIC, this);
-            if (state.toString().matches("CONNECTED") || establishedConnection) {
-                establishedConnection = true;
-            }
+            establishedConnection = "CONNECTED".matches(state.toString()) || establishedConnection;
         }
 
         // Wait for broker to get ready
         try {
-            Thread.sleep(10000);
+            TimeUnit.SECONDS.sleep(10);
         } catch (InterruptedException brokerWaitException) {
             logger.debug("Thread.sleep error '{}'", brokerWaitException.getMessage());
         }
@@ -770,19 +763,16 @@ public class FerroampHandler extends BaseThingHandler implements MqttMessageSubs
     }
 
     public String jsonStripEhub(String jsonStringEhub) {
-        String jsonStringStrippedEhub = jsonStringEhub.replaceAll("\"", "");
-        return jsonStringStrippedEhub;
+        return jsonStringEhub.replaceAll("\"", "");
     }
 
     public String jsonStripOneLiners(String jsonStringOneLiners) {
-        String jsonStringStrippedOneLiners = jsonStringOneLiners.replace("{", "").replace("\"", "").replace("val", "")
-                .replace(":", "").replace("}", "");
-        return jsonStringStrippedOneLiners;
+        return jsonStringOneLiners.replace("{", "").replace("\"", "").replace("val", "").replace(":", "").replace("}",
+                "");
     }
 
     public String mJTokWh(String actualmJ) {
         Double actualkWhD = (Double.parseDouble(actualmJ) / 3600000000.0);
-        String actualkWh = actualkWhD.toString();
-        return actualkWh;
+        return actualkWhD.toString();
     }
 }

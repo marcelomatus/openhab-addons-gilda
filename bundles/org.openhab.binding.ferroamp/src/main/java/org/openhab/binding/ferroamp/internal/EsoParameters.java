@@ -13,7 +13,7 @@
 
 package org.openhab.binding.ferroamp.internal;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -35,18 +35,8 @@ public class EsoParameters {
     }
 
     public static List<String> getChannelParametersEso() {
-        final List<String> channelParametersEso = new ArrayList<>();
-        channelParametersEso.add(new String("faultcode"));
-        channelParametersEso.add(new String("id"));
-        channelParametersEso.add(new String("ibat"));
-        channelParametersEso.add(new String("ubat"));
-        channelParametersEso.add(new String("relaystatus"));
-        channelParametersEso.add(new String("soc"));
-        channelParametersEso.add(new String("temp"));
-        channelParametersEso.add(new String("wbatcons"));
-        channelParametersEso.add(new String("wbatprod"));
-        channelParametersEso.add(new String("udc"));
-        channelParametersEso.add(new String("ts"));
+        final List<String> channelParametersEso = Arrays.asList("faultcode", "id", "ibat", "ubat", "relaystatus", "soc",
+                "temp", "wbatcons", "wbatprod", "udc", "ts");
         return channelParametersEso;
     }
 }

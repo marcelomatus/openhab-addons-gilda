@@ -13,7 +13,7 @@
 
 package org.openhab.binding.ferroamp.internal;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -30,16 +30,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public class SsoParameters {
 
     public static List<String> getChannelParametersSso() {
-        final List<String> channelParametersSso = new ArrayList<>();
-        channelParametersSso.add(new String("relaystatus"));
-        channelParametersSso.add(new String("temp"));
-        channelParametersSso.add(new String("wpv"));
-        channelParametersSso.add(new String("ts"));
-        channelParametersSso.add(new String("udc"));
-        channelParametersSso.add(new String("faultcode"));
-        channelParametersSso.add(new String("ipv"));
-        channelParametersSso.add(new String("upv"));
-        channelParametersSso.add(new String("id"));
-        return channelParametersSso;
+        final List<String> channelParametersSs0 = Arrays.asList("relaystatus", "temp", "wpv", "ts", "udc", "faultcode",
+                "ipv", "upv", "id");
+        return channelParametersSs0;
     }
 }

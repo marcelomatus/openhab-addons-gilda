@@ -12,7 +12,7 @@
 
   <artifactId>org.openhab.binding.ferroamp</artifactId>
 
-  <name>openHAB Add-ons :: Bundles :: ferroamp Binding</name>
+  <name>openHAB Add-ons :: Bundles :: Ferroamp Binding</name>
 
   <dependencies>
     <dependency>

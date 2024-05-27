@@ -6,8 +6,8 @@
 
 	<!-- ferroamp Energyhub Thing Type -->
 	<thing-type id="energyhub">
-		<label>Ferroamp Energyhub</label>
-		<description>Ferroamp Energyhub Thing</description>
+		<label>Ferroamp Binding Thing</label>
+		<description>Thing for Ferroamp Binding</description>
 		<config-description>
 			<parameter name="hostName" type="text" required="true">
 				<context>network-address</context>
@@ -26,7 +26,7 @@
 			</parameter>
 			<parameter name="hasBattery" type="boolean" required="false">
 				<label>Ehub type with/without battery</label>
-				<description>Type of system, with/without battery.</description>
+				<description>Battery Capable</description>
 				<default>false</default>
 			</parameter>
 		</config-description>

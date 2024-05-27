@@ -1,18 +1,19 @@
-## ferroamp Binding
+## Ferroamp Binding
 
-The ferroamp binding is used to get live data from Ferroamp energy system.
+The Ferroamp binding is used to get live data from Ferroamp EnergyHub
 
-The ferroamp binding is compatible with EnergyHub Wall and EnergyHub XL, and use connection to your local EnergyHub via LAN or similar.
+The Ferroamp binding is compatible with EnergyHub Wall and EnergyHub XL, and use connection to your local EnergyHub via LAN or similar.
 Data and commands are received/sent using MQTT where the user connects to the MQTT broker residing on the EnergyHub.
 
 Binding MQTT must be installed before binding ferroamp is able to use.
 
 Contact Ferroamp support to enable MQTT in the EnergyHub and to get Username and Password:
+
 https://ferroamp.com/om-ferroamp/
 
 ## Supported Things
 
-The binding retrieves data from the different parts of the Ferroamp energy system such as:
+The binding retrieves data from the different parts of the Ferroamp EnergyHub such as:
 
 - `Ehub`: EnergyHub Wall and EnergyHub XL.
 - `Sso`: Solar string optimizer.
@@ -25,9 +26,7 @@ Discovery is not supported.
 
 ## Thing Configuration
 
-Installing of binding ferroamp and configuration of it can be done in the UI.
-
-The following configuration-parameters are available for the ferroamp binding.
+The following configuration-parameters are available.
 
 | Name            | Type    | Description                           | Default | Required | Advanced |
 |-----------------|---------|---------------------------------------|---------|----------|----------|
@@ -37,8 +36,6 @@ The following configuration-parameters are available for the ferroamp binding.
 | hasBattery      | boolean | Is there a battery connected or not ? | N/A     | no       | yes      |
 
 ## Channels
-
-The following channels are available for reading, for the ferroamp binding.
 
 | Channel Type ID      | Item Type                  | Read/Write | Description                              |
 |---------------------------------------------------|------------|------------------------------------------|
@@ -72,7 +69,7 @@ The following channels are available for reading, for the ferroamp binding.
 | ehub-pinvreactive-l1 | Number:Power               | R          | Inverter power, Reactive L1              |
 | ehub-pinvreactive-l2 | Number:Power               | R          | Inverter power, Reactive L2              |
 | ehub-pinvreactive-l3 | Number:Power               | R          | Inverter power, Reactive L3              |
-| ehub-ts              | String                     | R          | Time stamp when message was published    |
+| ehub-ts              | DateTime                   | R          | Time stamp when message was published    |
 | ehub-ploadreactive-l1| Number:Power               | R          |                                          |
 | ehub-ploadreactive-l2| Number:Power               | R          |                                          |
 | ehub-ploadreactive-l3| Number:Power               | R          |                                          |
@@ -131,7 +128,7 @@ The following channels are available for reading, for the ferroamp binding.
 | ssos0-relaystatus    | String                     | R          | 0 = relay closed (i.e running power), 1 = relay open/disconnected, 2 = precharge|
 | ssos0-temp           | Number:Temperature         | R          | Temperature measured on PCB of SSO-0     |
 | ssos0-wpv            | Number:Energy              | R          | Total energy produced by SSO-0           |
-| ssos0-ts             | String                     | R          | Time stamp when message was published    |
+| ssos0-ts             | DateTime                   | R          | Time stamp when message was published    |
 | ssos0-udc            | Number:ElectricPotential   | R          | DC link voltage as measured by SSO-0     |
 | ssos0-faultcode      | String                     | R          | See section 4.1.3.1                      |
 | ssos0-ipv            | Number:ElectricCurrent     | R          | Measured on PV string side               |
@@ -140,7 +137,7 @@ The following channels are available for reading, for the ferroamp binding.
 | ssos1-relaystatus    | String                     | R          | 0 = relay closed (i.e running power), 1 = relay open/disconnected, 2 = precharge|
 | ssos1-temp           | Number:Temperature         | R          | Temperature measured on PCB of SSO-1     |
 | ssos1-wpv            | Number:Energy              | R          | Total energy produced by SSO-1           |
-| ssos1-ts             | String                     | R          | Time stamp when message was published    |
+| ssos1-ts             | DateTime                   | R          | Time stamp when message was published    |
 | ssos1-udc            | Number:ElectricPotential   | R          | DC link voltage as measured by SSO-1     |
 | ssos1-faultcode      | String                     | R          | See section 4.1.3.1                      |
 | ssos1-ipv            | Number:ElectricCurrent     | R          | Measured on PV string side               |
@@ -149,7 +146,7 @@ The following channels are available for reading, for the ferroamp binding.
 | ssos2-relaystatus    | String                     | R          | 0 = relay closed (i.e running power), 1 = relay open/disconnected, 2 = precharge|
 | ssos2-temp           | Number:Temperature         | R          | Temperature measured on PCB of SSO-2     |
 | ssos2-wpv            | Number:Energy              | R          | Total energy produced by SSO-2           |
-| ssos2-ts             | String                     | R          | Time stamp when message was published    |
+| ssos2-ts             | DateTime                   | R          | Time stamp when message was published    |
 | ssos2-udc            | Number:ElectricPotential   | R          | DC link voltage as measured by SSO-2     |
 | ssos2-faultcode      | String                     | R          | See section 4.1.3.1                      |
 | ssos2-ipv            | Number:ElectricCurrent     | R          | Measured on PV string side               |
@@ -158,7 +155,7 @@ The following channels are available for reading, for the ferroamp binding.
 | ssos3-relaystatus    | String                     | R          | 0 = relay closed (i.e running power), 1 = relay open/disconnected, 2 = precharge|
 | ssos3-temp           | Number:Temperature         | R          | Temperature measured on PCB of SSO-3     |
 | ssos3-wpv            | Number:Energy              | R          | Total energy produced by SSO-3           |
-| ssos3-ts             | String                     | R          | Time stamp when message was published    |
+| ssos3-ts             | DateTime                   | R          | Time stamp when message was published    |
 | ssos3-udc            | Number:ElectricPotential   | R          | DC link voltage as measured by SSO-3     |
 | ssos3-faultcode      | String                     | R          | See section 4.1.3.1                      |
 | ssos3-ipv            | Number:ElectricCurrent     | R          | Measured on PV string side               |
@@ -174,16 +171,16 @@ The following channels are available for reading, for the ferroamp binding.
 | eso-wpbatcons        | Number:Energy              | R          | Total energy produced by ESO, i.e total energy charged|
 | eso-wbatprod         | Number:Energy              | R          | Total energy produced by ESO, i.e total energy discharged|
 | eso-udc              | Number:Power               | R          | DC link voltage as measured by ESO       |
-| eso-ts               | String                     | R          | Time stamp when message was published    |
+| eso-ts               | DateTime                   | R          | Time stamp when message was published    |
 | esm-soh              | Number:Dimensionless       | R          |                                          |
 | esm-soc              | Number:Dimensionless       | R          |                                          |
 | esm-rated-capacity   | Number:Energy              | R          | Rated capacity of battery                |
 | esm-id               | String                     | R          | Unique identifier of battery. If available, this will be the unique id that the battery reports. |
 | esm-rated-power      | Number:Power               | R          | Rated power of battery                   |
 | esm-status           | String                     | R          | Dependent on battery manufacturer        |
-| esm-ts               | String                     | R          | Time stamp when message was published    |
+| esm-ts               | DateTime                   | R          | Time stamp when message was published    |
 
-The following channels are available for Ferroamp energy system configuration. Please, see Ferroamp documentation for more details.
+The following channels are available for `Ferroamp` EnergyHub configuration. Please, see Ferroamp documentation for more details.
 
 | Channel Type ID      | Item Type                  | Read/Write | Description                              |
 |---------------------------------------------------|------------|------------------------------------------|
@@ -195,9 +192,13 @@ The following channels are available for Ferroamp energy system configuration. P
 
 ## Thing
 
+```java
 Thing ferroamp:energyhub:myenergyhub [ hostName="'energyhub-ip'", userName="'myUserName'", password="'myPassword'", hasBattery=false ]
+```
 
 ## Items
 
+```java
 Number:Energy ferroamp "ehub-wloadconsq-l1" <energy> { channel="ferroamp:energyhub:myenergyhub:ehub-wloadconsq-l1" }
 String ferroamp "request-charge" <energy> { channel="ferroamp:energyhub:myenergyhub:request-charge" }
+```
