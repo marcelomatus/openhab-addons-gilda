@@ -4,8 +4,8 @@
 	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
 	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 	<thing-type id="energyhub">
-		<label>Ferroamp Energyhub</label>
-		<description>Ferroamp Energyhub Thing</description>
+		<label>Ferroamp EnergyHub</label>
+		<description>Represents the Ferroamp EnergyHub</description>
 		<category>Energy</category>
 		<channels>
 			<channel typeId="ehub-wloadconsq-l1" id="ehubwloadconsql1"/>
@@ -156,5 +156,6 @@
 		<properties>
 			<property name="vendor">ferroamp</property>
 		</properties>
+		<config-description-ref uri="thing-type:ferroamp:energyhub"/>
 	</thing-type>
 </thing:thing-descriptions>

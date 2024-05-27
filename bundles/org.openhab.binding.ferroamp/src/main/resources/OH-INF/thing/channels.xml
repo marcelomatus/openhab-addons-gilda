@@ -193,10 +193,10 @@
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
 	<channel-type id="ehub-ts">
-		<item-type>String</item-type>
+		<item-type>DateTime</item-type>
 		<label>EHUB, Time Stamp</label>
 		<description>Time stamp when message was published</description>
-		<category>Energy</category>
+		<category>Time</category>
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="ehub-ploadreactive-l1">
@@ -360,15 +360,15 @@
 	</channel-type>
 	<channel-type id="ehub-udcpos">
 		<item-type>Number:ElectricPotential</item-type>
-		<label>EHUB, Positiv DC Link Voltage</label>
-		<description>Positiv dc link voltage</description>
+		<label>EHUB, Positive DC Link Voltage</label>
+		<description>Positive dc link voltage</description>
 		<category>Energy</category>
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
 	<channel-type id="ehub-udcneg">
 		<item-type>Number:ElectricPotential</item-type>
-		<label>EHUB, Negativ DC Link Voltage</label>
-		<description>Negativ dc link voltage</description>
+		<label>EHUB, Negative DC Link Voltage</label>
+		<description>Negative dc link voltage</description>
 		<category>Energy</category>
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
@@ -591,10 +591,10 @@
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
 	<channel-type id="ssos0-ts">
-		<item-type>String</item-type>
+		<item-type>DateTime</item-type>
 		<label>SSO, String-0, Time Stamp</label>
 		<description>Time stamp when message was published</description>
-		<category>Energy</category>
+		<category>Time</category>
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="ssos0-udc">
@@ -654,10 +654,10 @@
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
 	<channel-type id="ssos1-ts">
-		<item-type>String</item-type>
+		<item-type>DateTime</item-type>
 		<label>SSO, String-1, Time Stamp</label>
 		<description>Time stamp when message was published</description>
-		<category>Energy</category>
+		<category>Time</category>
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="ssos1-udc">
@@ -717,10 +717,10 @@
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
 	<channel-type id="ssos2-ts">
-		<item-type>String</item-type>
+		<item-type>DateTime</item-type>
 		<label>SSO, String-2, Time Stamp</label>
 		<description>Time stamp when message was published</description>
-		<category>Energy</category>
+		<category>Time</category>
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="ssos2-udc">
@@ -780,10 +780,10 @@
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
 	<channel-type id="ssos3-ts">
-		<item-type>String</item-type>
+		<item-type>DateTime</item-type>
 		<label>SSO, String-3, Time Stamp</label>
 		<description>Time stamp when message was published</description>
-		<category>Energy</category>
+		<category>Time</category>
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="ssos3-udc">
@@ -892,10 +892,10 @@
 		<state readOnly="true" pattern="%.2f %unit%"/>
 	</channel-type>
 	<channel-type id="eso-ts">
-		<item-type>String</item-type>
+		<item-type>DateTime</item-type>
 		<label>ESO, Time stamp</label>
 		<description>Time stamp when message was published</description>
-		<category>Energy</category>
+		<category>Time</category>
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="esm-soh">
@@ -941,10 +941,10 @@
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="esm-ts">
-		<item-type>String</item-type>
+		<item-type>DateTime</item-type>
 		<label>ESM, Time Stamp</label>
 		<description>Time stamp when message was published</description>
-		<category>Energy</category>
+		<category>Time</category>
 		<state readOnly="true"/>
 	</channel-type>
 	<channel-type id="request-charge">
