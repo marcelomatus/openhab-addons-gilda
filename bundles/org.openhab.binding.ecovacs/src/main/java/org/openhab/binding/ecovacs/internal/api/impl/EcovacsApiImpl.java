@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2023 Contributors to the openHAB project
+ * Copyright (c) 2010-2024 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -12,9 +12,13 @@
  */
 package org.openhab.binding.ecovacs.internal.api.impl;
 
-import java.io.InputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,7 +29,6 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -56,18 +59,22 @@ import org.openhab.binding.ecovacs.internal.api.impl.dto.response.main.ResponseW
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.AbstractPortalIotCommandResponse;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.Device;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.IotProduct;
+import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalCleanLogRecord;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalCleanLogsResponse;
+import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalCleanResultsResponse;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalDeviceResponse;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalIotCommandJsonResponse;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalIotCommandXmlResponse;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalIotProductResponse;
 import org.openhab.binding.ecovacs.internal.api.impl.dto.response.portal.PortalLoginResponse;
 import org.openhab.binding.ecovacs.internal.api.util.DataParsingException;
-import org.openhab.binding.ecovacs.internal.api.util.MD5Util;
+import org.openhab.binding.ecovacs.internal.api.util.HashUtil;
+import org.openhab.core.OpenHAB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
@@ -111,8 +118,8 @@ public final class EcovacsApiImpl implements EcovacsApi {
     private AccessData login() throws EcovacsApiException, InterruptedException {
         HashMap<String, String> loginParameters = new HashMap<>();
         loginParameters.put("account", configuration.getUsername());
-        loginParameters.put("password", MD5Util.getMD5Hash(configuration.getPassword()));
-        loginParameters.put("requestId", MD5Util.getMD5Hash(String.valueOf(System.currentTimeMillis())));
+        loginParameters.put("password", HashUtil.getMD5Hash(configuration.getPassword()));
+        loginParameters.put("requestId", HashUtil.getMD5Hash(String.valueOf(System.currentTimeMillis())));
         loginParameters.put("authTimeZone", configuration.getTimeZone());
         loginParameters.put("country", configuration.getCountry());
         loginParameters.put("lang", configuration.getLanguage());
@@ -162,13 +169,12 @@ public final class EcovacsApiImpl implements EcovacsApi {
 
     @Override
     public List<EcovacsDevice> getDevices() throws EcovacsApiException, InterruptedException {
-        List<DeviceDescription> descriptions = getSupportedDeviceList();
+        Map<String, DeviceDescription> descriptions = getSupportedDeviceDescs();
         List<IotProduct> products = null;
         List<EcovacsDevice> devices = new ArrayList<>();
         for (Device dev : getDeviceList()) {
-            Optional<DeviceDescription> descOpt = descriptions.stream()
-                    .filter(d -> dev.getDeviceClass().equals(d.deviceClass)).findFirst();
-            if (!descOpt.isPresent()) {
+            Optional<DeviceDescription> descOpt = Optional.ofNullable(descriptions.get(dev.getDeviceClass()));
+            if (descOpt.isEmpty()) {
                 if (products == null) {
                     products = getIotProductMap();
                 }
@@ -188,29 +194,58 @@ public final class EcovacsApiImpl implements EcovacsApi {
         return devices;
     }
 
-    private List<DeviceDescription> getSupportedDeviceList() {
+    // maps device class -> device description
+    private Map<String, DeviceDescription> getSupportedDeviceDescs() {
+        Map<String, DeviceDescription> descs = new HashMap<>();
         ClassLoader cl = Objects.requireNonNull(getClass().getClassLoader());
-        InputStream is = cl.getResourceAsStream("devices/supported_device_list.json");
-        JsonReader reader = new JsonReader(new InputStreamReader(is));
+        try (Reader reader = new InputStreamReader(cl.getResourceAsStream("devices/supported_device_list.json"))) {
+            for (DeviceDescription desc : loadSupportedDeviceData(reader)) {
+                descs.put(desc.deviceClass, desc);
+            }
+            logger.trace("Loaded {} built-in device descriptions", descs.size());
+        } catch (IOException | JsonSyntaxException e) {
+            logger.warn("Failed loading built-in device descriptions", e);
+        }
+
+        Path customDescsPath = Paths.get(OpenHAB.getUserDataFolder(), "ecovacs").resolve("custom_device_descs.json");
+        if (Files.exists(customDescsPath)) {
+            try (Reader reader = Files.newBufferedReader(customDescsPath)) {
+                int builtins = descs.size();
+                for (DeviceDescription desc : loadSupportedDeviceData(reader)) {
+                    DeviceDescription builtinDesc = descs.put(desc.deviceClass, desc);
+                    if (builtinDesc != null) {
+                        logger.trace("Overriding built-in description for {} with custom description",
+                                desc.deviceClass);
+                    }
+                }
+                logger.trace("Loaded {} custom device descriptions", descs.size() - builtins);
+            } catch (IOException | JsonSyntaxException e) {
+                logger.warn("Failed loading custom device descriptions from {}", customDescsPath, e);
+            }
+        }
+
+        descs.entrySet().forEach(descEntry -> {
+            DeviceDescription desc = descEntry.getValue();
+            if (desc.deviceClassLink != null) {
+                Optional<DeviceDescription> linkedDescOpt = Optional.ofNullable(descs.get(desc.deviceClassLink));
+                if (linkedDescOpt.isEmpty()) {
+                    logger.warn("Device description {} links unknown description {}", desc.deviceClass,
+                            desc.deviceClassLink);
+                }
+                desc = desc.resolveLinkWith(linkedDescOpt.get());
+                descEntry.setValue(desc);
+            }
+            desc.addImplicitCapabilities();
+        });
+
+        return descs;
+    }
+
+    private List<DeviceDescription> loadSupportedDeviceData(Reader input) throws IOException {
+        JsonReader reader = new JsonReader(input);
         Type type = new TypeToken<List<DeviceDescription>>() {
         }.getType();
-        List<DeviceDescription> descs = gson.fromJson(reader, type);
-        return descs.stream().map(desc -> {
-            final DeviceDescription result;
-            if (desc.deviceClassLink != null) {
-                Optional<DeviceDescription> linkedDescOpt = descs.stream()
-                        .filter(d -> d.deviceClass.equals(desc.deviceClassLink)).findFirst();
-                if (!linkedDescOpt.isPresent()) {
-                    throw new IllegalStateException(
-                            "Desc " + desc.deviceClass + " links unknown desc " + desc.deviceClassLink);
-                }
-                result = desc.resolveLinkWith(linkedDescOpt.get());
-            } else {
-                result = desc;
-            }
-            result.addImplicitCapabilities();
-            return result;
-        }).collect(Collectors.toList());
+        return gson.fromJson(reader, type);
     }
 
     private List<Device> getDeviceList() throws EcovacsApiException, InterruptedException {
@@ -277,8 +312,7 @@ public final class EcovacsApiImpl implements EcovacsApi {
         }
     }
 
-    public List<PortalCleanLogsResponse.LogRecord> fetchCleanLogs(Device device)
-            throws EcovacsApiException, InterruptedException {
+    public List<PortalCleanLogRecord> fetchCleanLogs(Device device) throws EcovacsApiException, InterruptedException {
         PortalCleanLogsRequest data = new PortalCleanLogsRequest(createAuthData(), device.getDid(),
                 device.getResource());
         String url = EcovacsApiUrlFactory.getPortalLogUrl(configuration);
@@ -291,12 +325,39 @@ public final class EcovacsApiImpl implements EcovacsApi {
         return responseObj.records;
     }
 
+    public List<PortalCleanLogRecord> fetchCleanResultsLog(Device device)
+            throws EcovacsApiException, InterruptedException {
+        String url = EcovacsApiUrlFactory.getPortalCleanResultsLogUrl(configuration);
+        Request request = createSignedAppRequest(url).param("auth", gson.toJson(createAuthData())) //
+                .param("channel", configuration.getChannel()) //
+                .param("did", device.getDid()) //
+                .param("defaultLang", "EN") //
+                .param("logType", "clean") //
+                .param("res", device.getResource()) //
+                .param("size", "20") //
+                .param("version", "v2");
+
+        ContentResponse response = executeRequest(request);
+        PortalCleanResultsResponse responseObj = handleResponse(response, PortalCleanResultsResponse.class);
+        if (!responseObj.wasSuccessful()) {
+            throw new EcovacsApiException("Fetching clean results failed");
+        }
+        logger.trace("{}: Fetching cleaning results yields {} records", device.getName(), responseObj.records.size());
+        return responseObj.records;
+    }
+
+    public byte[] downloadCleanMapImage(String url, boolean useSigning)
+            throws EcovacsApiException, InterruptedException {
+        Request request = useSigning ? createSignedAppRequest(url) : httpClient.newRequest(url).method(HttpMethod.GET);
+        return executeRequest(request).getContent();
+    }
+
     private PortalAuthRequestParameter createAuthData() {
         PortalLoginResponse loginData = this.loginData;
         if (loginData == null) {
             throw new IllegalStateException("Not logged in");
         }
-        return new PortalAuthRequestParameter(configuration.getPortalAUthRequestWith(), loginData.getUserId(),
+        return new PortalAuthRequestParameter(configuration.getPortalAuthRequestWith(), loginData.getUserId(),
                 configuration.getRealm(), loginData.getToken(), configuration.getResource());
     }
 
@@ -312,13 +373,18 @@ public final class EcovacsApiImpl implements EcovacsApi {
     }
 
     private <T> T handleResponse(ContentResponse response, Class<T> clazz) throws EcovacsApiException {
-        @Nullable
-        T respObject = gson.fromJson(response.getContentAsString(), clazz);
-        if (respObject == null) {
-            // should not happen in practice
-            throw new EcovacsApiException("No response received");
+        try {
+            @Nullable
+            T respObject = gson.fromJson(response.getContentAsString(), clazz);
+            if (respObject == null) {
+                // should not happen in practice
+                throw new EcovacsApiException("No response received");
+            }
+            return respObject;
+        } catch (JsonSyntaxException e) {
+            throw new EcovacsApiException("Failed to parse response '" + response.getContentAsString()
+                    + "' as data class " + clazz.getSimpleName(), e);
         }
-        return respObject;
     }
 
     private Request createAuthRequest(String url, String clientKey, String clientSecret,
@@ -333,12 +399,33 @@ public final class EcovacsApiImpl implements EcovacsApi {
         signOnText.append(clientSecret);
 
         signedRequestParameters.put("authAppkey", clientKey);
-        signedRequestParameters.put("authSign", MD5Util.getMD5Hash(signOnText.toString()));
+        signedRequestParameters.put("authSign", HashUtil.getMD5Hash(signOnText.toString()));
 
         Request request = httpClient.newRequest(url).method(HttpMethod.GET);
         signedRequestParameters.forEach(request::param);
 
         return request;
+    }
+
+    private Request createSignedAppRequest(String url) {
+        String timestamp = Long.toString(System.currentTimeMillis());
+        String signContent = configuration.getAppId() + configuration.getAppKey() + timestamp;
+        PortalLoginResponse loginData = this.loginData;
+        if (loginData == null) {
+            throw new IllegalStateException("Not logged in");
+        }
+        return httpClient.newRequest(url).method(HttpMethod.GET)
+                .header("Authorization", "Bearer " + loginData.getToken()) //
+                .header("token", loginData.getToken()) //
+                .header("appid", configuration.getAppId()) //
+                .header("plat", configuration.getAppPlatform()) //
+                .header("userid", loginData.getUserId()) //
+                .header("user-agent", configuration.getAppUserAgent()) //
+                .header("v", configuration.getAppVersion()) //
+                .header("country", configuration.getCountry()) //
+                .header("sign", HashUtil.getSHA256Hash(signContent)) //
+                .header("signType", "sha256") //
+                .param("et1", timestamp);
     }
 
     private Request createJsonRequest(String url, Object data) {

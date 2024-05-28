@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2023 Contributors to the openHAB project
+ * Copyright (c) 2010-2024 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -217,12 +217,12 @@ public class LightThingHandler extends DeconzBaseThingHandler {
                     } else {
                         double[] xy = ColorUtil.hsbToXY(hsbCommand);
                         newLightState.xy = new double[] { xy[0], xy[1] };
-                        newLightState.bri = (int) (xy[2] * BRIGHTNESS_MAX);
+                        newLightState.bri = Util.fromPercentType(hsbCommand.getBrightness());
                     }
-                } else if (command instanceof PercentType) {
-                    newLightState.bri = Util.fromPercentType((PercentType) command);
-                } else if (command instanceof DecimalType) {
-                    newLightState.bri = ((DecimalType) command).intValue();
+                } else if (command instanceof PercentType percentCommand) {
+                    newLightState.bri = Util.fromPercentType(percentCommand);
+                } else if (command instanceof DecimalType decimalCommand) {
+                    newLightState.bri = decimalCommand.intValue();
                 } else {
                     return;
                 }
@@ -395,7 +395,12 @@ public class LightThingHandler extends DeconzBaseThingHandler {
                     updateState(channelUID, new DecimalType(miredToKelvin(ct)));
                 }
             }
-            case CHANNEL_POSITION -> updatePercentTypeChannel(channelUID, newState.bri, true); // always post value
+            case CHANNEL_POSITION -> {
+                Integer lift = newState.lift;
+                if (lift != null) {
+                    updateState(channelUID, new PercentType(lift));
+                }
+            }
             case CHANNEL_EFFECT -> updateStringChannel(channelUID, newState.effect);
             case CHANNEL_EFFECT_SPEED -> updateDecimalTypeChannel(channelUID, newState.effectSpeed);
         }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2023 Contributors to the openHAB project
+ * Copyright (c) 2010-2024 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -12,6 +12,7 @@
  */
 package org.openhab.binding.sleepiq.internal.api.impl;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -28,6 +29,7 @@ import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.FoundationOutl
 import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.FoundationOutletTypeAdapter;
 import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.FoundationPositionTypeAdapter;
 import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.FoundationPresetTypeAdapter;
+import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.LocalDateTypeAdapter;
 import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.SideTypeAdapter;
 import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.SleepNumberRequestAdapter;
 import org.openhab.binding.sleepiq.internal.api.impl.typeadapters.TimeSinceTypeAdapter;
@@ -50,6 +52,7 @@ public class GsonGenerator {
     public static Gson create(boolean prettyPrint) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeTypeAdapter());
+        builder.registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter());
         builder.registerTypeAdapter(TimeSince.class, new TimeSinceTypeAdapter());
         builder.registerTypeAdapter(SleepNumberRequest.class, new SleepNumberRequestAdapter());
         builder.registerTypeAdapter(Side.class, new SideTypeAdapter());

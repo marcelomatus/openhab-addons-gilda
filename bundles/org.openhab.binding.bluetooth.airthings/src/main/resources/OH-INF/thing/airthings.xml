@@ -102,7 +102,7 @@
 	</thing-type>
 
 	<channel-type id="airthings_humidity">
-		<item-type>Number:Dimensionless</item-type>
+		<item-type unitHint="%">Number:Dimensionless</item-type>
 		<label>Humidity</label>
 		<description>Humidity level</description>
 		<state readOnly="true" pattern="%.1f %%"/>
@@ -132,13 +132,13 @@
 		<state readOnly="true" pattern="%.0f %unit%"/>
 	</channel-type>
 	<channel-type id="airthings_radon_st_avg">
-		<item-type>Number:Density</item-type>
+		<item-type>Number:RadiationSpecificActivity</item-type>
 		<label>Radon Short Term Average Level</label>
 		<description>Radon gas level</description>
 		<state readOnly="true" pattern="%.0f %unit%"/>
 	</channel-type>
 	<channel-type id="airthings_radon_lt_avg">
-		<item-type>Number:Density</item-type>
+		<item-type>Number:RadiationSpecificActivity</item-type>
 		<label>Radon Long Term Average Level</label>
 		<description>Radon gas level</description>
 		<state readOnly="true" pattern="%.0f %unit%"/>
