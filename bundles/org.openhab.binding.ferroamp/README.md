@@ -5,8 +5,6 @@ The Ferroamp binding is used to get live data from Ferroamp EnergyHub
 The Ferroamp binding is compatible with EnergyHub Wall and EnergyHub XL, and use connection to your local EnergyHub via LAN or similar.
 Data and commands are received/sent using MQTT where the user connects to the MQTT broker residing on the EnergyHub.
 
-Binding MQTT must be installed before binding ferroamp is able to use.
-
 Contact Ferroamp support to enable MQTT in the EnergyHub and to get Username and Password:
 
 https://ferroamp.com/om-ferroamp/

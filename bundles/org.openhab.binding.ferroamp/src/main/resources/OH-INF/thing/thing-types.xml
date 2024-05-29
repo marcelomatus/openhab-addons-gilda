@@ -25,10 +25,9 @@
 				<description>Password to access the device</description>
 			</parameter>
 			<parameter name="hasBattery" type="boolean" required="false">
-				<label>Ehub type with/without battery</label>
-				<description>Battery Capable</description>
+				<label>Battery Capable</label>
+				<description>Ehub type, with/without battery</description>
 				<default>false</default>
-			</parameter>
-		</config-description>
+			</parameter>		</config-description>
 	</thing-type>
 </thing:thing-descriptions>
