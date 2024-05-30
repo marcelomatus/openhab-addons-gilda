@@ -4,7 +4,6 @@
 	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
 	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
-	<!-- ferroamp Energyhub Thing Type -->
 	<thing-type id="energyhub">
 		<label>Ferroamp Binding Thing</label>
 		<description>Thing for Ferroamp Binding</description>
@@ -28,6 +27,7 @@
 				<label>Battery Capable</label>
 				<description>Ehub type, with/without battery</description>
 				<default>false</default>
-			</parameter>		</config-description>
+			</parameter>
+		</config-description>
 	</thing-type>
 </thing:thing-descriptions>
