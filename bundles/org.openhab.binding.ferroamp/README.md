@@ -200,3 +200,23 @@ Thing ferroamp:energyhub:myenergyhub [ hostName="energyhub-ip", userName="myUser
 Number:Energy ferroamp "ehub-wloadconsq-l1" <energy> { channel="ferroamp:energyhub:myenergyhub:ehub-wloadconsq-l1" }
 String ferroamp "request-charge" <energy> { channel="ferroamp:energyhub:myenergyhub:request-charge" }
 ```
+
+## Rules
+
+Ex. Set Charging with 5000W with cron trigger:
+
+```yaml
+triggers:
+   id: "1"
+    configuration:
+      cronExpression: 0 0/2 * * * ? *
+    type: timer.GenericCronTrigger
+conditions: []
+actions:
+   inputs: {}
+    id: "2"
+    configuration:
+      type: application/vnd.openhab.dsl.rule
+      script: ChargingWith5000W.sendCommand("5000")
+    type: script.ScriptAction
+```
