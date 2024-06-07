@@ -44,7 +44,7 @@ public class EhubParameters {
                 "wextprodql1", "wextprodql2", "wextprodql3", "wpv", "pextreactivel1", "pextreactivel2",
                 "pextreactivel3", "udcpos", "udcneg", "sext", "iexdtl1", "iexdtl2", "iexdtl3", "wextconsq_3p", "ildl1",
                 "ildl2", "ildl3", "gridfreq", "wloadconsq_3p", "ull1", "ull2", "ull3", "wextprodq_3p", "ilql1", "ilql2",
-                "ilql3", "winvprodql1", "winvprodql2", "winvprodql3", "ill1", "ill2", "ill3", "wbatprod", "wbatcons",
+                "ilql3", "winvprodql1", "winvprodql2", "winvprodql3", "ill1", "ill2", "ill3", "wbatprod", "wpbatcons",
                 "soc", "soh", "pbat", "ratedcap");
         return channelParametersEhub;
     }

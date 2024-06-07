@@ -132,7 +132,7 @@ public class FerroampBindingConstants {
 
     // List of battery setup Channel ids
     public static final String CHANNEL_EHUBWBATPROD = "ehubwbatprod";
-    public static final String CHANNEL_EHUBWBATCONS = "ehubwbatcons";
+    public static final String CHANNEL_EHUBWPBATCONS = "ehubwpbatcons";
     public static final String CHANNEL_EHUBSOC = "ehubsoc";
     public static final String CHANNEL_EHUBSOH = "ehubsoh";
     public static final String CHANNEL_EHUBPBAT = "ehubpbat";
@@ -185,7 +185,6 @@ public class FerroampBindingConstants {
     public static final String CHANNEL_ESORELAYSTATUS = "esorelaystatus";
     public static final String CHANNEL_ESOSOC = "esosoc";
     public static final String CHANNEL_ESOTEMP = "esotemp";
-    public static final String CHANNEL_ESOWBATCONS = "esowbatcons";
     public static final String CHANNEL_ESOWBATPROD = "esowbatprod";
     public static final String CHANNEL_ESOUDC = "esoudc";
     public static final String CHANNEL_ESOTS = "esots";

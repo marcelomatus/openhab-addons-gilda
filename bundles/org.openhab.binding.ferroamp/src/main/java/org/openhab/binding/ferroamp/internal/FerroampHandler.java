@@ -737,7 +737,7 @@ public class FerroampHandler extends BaseThingHandler implements MqttMessageSubs
                 esoChannelPostsValue[channelValuesCounterEso] = jsonStripOneLiners(esoChannelObject
                         .get(EsoParameters.getChannelParametersEso().get(channelValuesCounterEso)).toString());
                 String channel = cConfig.id;
-                if ("esoWBatCons".equals(channel) || "esoWBatProd".equals(channel)) {
+                if ("esoWBatProd".equals(channel)) {
                     esoChannelPostsValue[channelValuesCounterEso] = mJTokWh(
                             esoChannelPostsValue[channelValuesCounterEso]);
                 }

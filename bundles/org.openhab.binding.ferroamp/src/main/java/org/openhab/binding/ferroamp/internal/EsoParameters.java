@@ -36,7 +36,7 @@ public class EsoParameters {
 
     public static List<String> getChannelParametersEso() {
         final List<String> channelParametersEso = Arrays.asList("faultcode", "id", "ibat", "ubat", "relaystatus", "soc",
-                "temp", "wbatcons", "wbatprod", "udc", "ts");
+                "temp", "wbatprod", "udc", "ts");
         return channelParametersEso;
     }
 }

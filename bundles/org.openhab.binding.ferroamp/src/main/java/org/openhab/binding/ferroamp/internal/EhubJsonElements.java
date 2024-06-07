@@ -71,7 +71,7 @@ public class EhubJsonElements {
         jsonElementsEhub.add(new String("winvprodq"));
         jsonElementsEhub.add(new String("il"));
         jsonElementsEhub.add(new String("wbatprod"));
-        jsonElementsEhub.add(new String("wbatcons"));
+        jsonElementsEhub.add(new String("wpbatcons"));
         jsonElementsEhub.add(new String("soc"));
         jsonElementsEhub.add(new String("soh"));
         jsonElementsEhub.add(new String("pbat"));

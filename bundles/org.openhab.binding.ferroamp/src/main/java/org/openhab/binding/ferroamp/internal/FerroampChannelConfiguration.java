@@ -204,7 +204,7 @@ public class FerroampChannelConfiguration {
         channelConfigurationEhub
                 .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_EHUBWBATPROD, Units.JOULE));
         channelConfigurationEhub
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_EHUBWBATCONS, Units.JOULE));
+                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_EHUBWPBATCONS, Units.JOULE));
         channelConfigurationEhub
                 .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_EHUBSOC, Units.PERCENT));
         channelConfigurationEhub
@@ -329,8 +329,6 @@ public class FerroampChannelConfiguration {
                 .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_ESOSOC, Units.PERCENT));
         channelConfigurationEso
                 .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_ESOTEMP, Units.ONE));
-        channelConfigurationEso
-                .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_ESOWBATCONS, Units.JOULE));
         channelConfigurationEso
                 .add(new FerroampChannelConfiguration(FerroampBindingConstants.CHANNEL_ESOWBATPROD, Units.JOULE));
         channelConfigurationEso

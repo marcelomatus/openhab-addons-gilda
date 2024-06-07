@@ -197,8 +197,8 @@ Thing ferroamp:energyhub:myenergyhub [ hostName="energyhub-ip", userName="myUser
 ## Items
 
 ```java
-Number:Energy ferroamp "ehub-wloadconsq-l1" <energy> { channel="ferroamp:energyhub:myenergyhub:ehub-wloadconsq-l1" }
-String ferroamp "request-charge" <energy> { channel="ferroamp:energyhub:myenergyhub:request-charge" }
+Number:Energy Ferroamp "EHUB, WLoadConsq" <energy> { channel="ferroamp:energyhub:myenergyhub:ehub-wloadconsq-l1" }
+String Ferroamp "RequestCharge" <energy> { channel="ferroamp:energyhub:myenergyhub:request-charge" }
 ```
 
 ## Rules
