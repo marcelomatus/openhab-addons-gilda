@@ -5,24 +5,11 @@ The openHAB ChatGPT Binding allows openHAB to communicate with the ChatGPT langu
 ChatGPT is a powerful natural language processing (NLP) tool that can be used to understand and respond to a wide range of text-based commands and questions. 
 With this binding, users can:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6eeb63478 (New branch)
 - Control openHAB Devices: Manage lights, climate systems, media players, and more with natural language commands.
 - Multi-language Support: Issue commands in almost any language, enhancing accessibility.
 - Engage in Conversations: Have casual conversations, ask questions, and receive informative responses.
 - Extended Capabilities: Utilize all other functionalities of ChatGPT, from composing creative content to answering complex questions.
 
-<<<<<<< HEAD
-=======
-Control openHAB Devices: Manage lights, climate systems, media players, and more with natural language commands.
-Multi-language Support: Issue commands in almost any language, enhancing accessibility.
-Engage in Conversations: Have casual conversations, ask questions, and receive informative responses.
-Extended Capabilities: Utilize all other functionalities of ChatGPT, from composing creative content to answering complex questions.
->>>>>>> b2d558350 (New branch)
-=======
->>>>>>> 6eeb63478 (New branch)
 This integration significantly enhances user experience, providing seamless control over smart home environments and access to the full range of ChatGPT’s capabilities.
 
 ## Supported Things
@@ -44,15 +31,7 @@ The advanced parameters `apiUrl` and `modelUrl` can be used, if any other ChatGP
 
 ## Items Configuration
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 You will need to tag [ "OpenAI" ] items which you want to control via chatGPT. Item names should look like Location_Type, for example "Kitchen_Light". In label describe item in more detail, if necessary, describe what commands it accepts.
-=======
-You will need to tag [ "OpenAI" ] items which you want to control via chatGPT. Item names should look like Location_Type, for example "Kitchen_Light". In label describe item in more detail.
->>>>>>> b2d558350 (New branch)
-=======
-You will need to tag [ "OpenAI" ] items which you want to control via chatGPT. Item names should look like Location_Type, for example "Kitchen_Light". In label describe item in more detail, if necessary, describe what commands it accepts.
->>>>>>> 6eeb63478 (New branch)
 
 ## Channels
 
@@ -129,15 +108,7 @@ String LivingRoom_AC_Mode "Thermostat mode in the living room, accepted modes: O
 
 ### UI Configuration
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 Go to Settings -> Voice and choose Rule-based Interpreter. Then Settings -> configure Voice Interpreter and select Chat_Conversation item. You must have speach-to-text and text-to-speach configured.
-=======
-Go to Settings -> Voice and choose Rule-based Interpreter. Then Settings -> configure Voice -> Interpreter and select Chat_Conversation item.
->>>>>>> b2d558350 (New branch)
-=======
-Go to Settings -> Voice and choose Rule-based Interpreter. Then Settings -> configure Voice Interpreter and select Chat_Conversation item. You must have speach-to-text and text-to-speach configured.
->>>>>>> 6eeb63478 (New branch)
 
 ### Example Rules
 
