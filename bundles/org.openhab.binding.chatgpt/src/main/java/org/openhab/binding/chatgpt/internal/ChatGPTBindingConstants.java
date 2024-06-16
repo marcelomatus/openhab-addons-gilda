@@ -34,6 +34,4 @@ public class ChatGPTBindingConstants {
     public static final String CHANNEL_CHAT = "chat";
 
     public static final ChannelTypeUID CHANNEL_TYPE_UID_CHAT = new ChannelTypeUID(BINDING_ID, CHANNEL_CHAT);
-
-    public static final Integer MAX_CONTEXT_TOKENS = 10000;
 }
