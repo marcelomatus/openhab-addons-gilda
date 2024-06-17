@@ -101,8 +101,6 @@ public class ChatGPTHLIService implements ThingHandlerService, HumanLanguageInte
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(reader);
 
-            logger.info("Node: {}", mapper.writeValueAsString(node));
-
             try {
                 this.tools = Arrays.asList(mapper.treeToValue(node, ChatTools[].class));
             } catch (JsonProcessingException e) {

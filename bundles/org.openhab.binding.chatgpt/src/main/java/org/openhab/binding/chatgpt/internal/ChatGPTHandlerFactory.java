@@ -18,9 +18,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
-import org.openhab.core.events.EventPublisher;
 import org.openhab.core.io.net.http.HttpClientFactory;
-import org.openhab.core.items.ItemRegistry;
 import org.openhab.core.thing.Thing;
 import org.openhab.core.thing.ThingTypeUID;
 import org.openhab.core.thing.binding.BaseThingHandlerFactory;
@@ -42,15 +40,10 @@ public class ChatGPTHandlerFactory extends BaseThingHandlerFactory {
 
     private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Set.of(THING_TYPE_ACCOUNT);
     private HttpClientFactory httpClientFactory;
-    protected final ItemRegistry itemRegistry;
-    protected final EventPublisher eventPublisher;
 
     @Activate
-    public ChatGPTHandlerFactory(@Reference HttpClientFactory httpClientFactory, @Reference ItemRegistry itemRegistry,
-            @Reference EventPublisher eventPublisher) {
+    public ChatGPTHandlerFactory(@Reference HttpClientFactory httpClientFactory) {
         this.httpClientFactory = httpClientFactory;
-        this.itemRegistry = itemRegistry;
-        this.eventPublisher = eventPublisher;
     }
 
     @Override
@@ -63,7 +56,7 @@ public class ChatGPTHandlerFactory extends BaseThingHandlerFactory {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
         if (THING_TYPE_ACCOUNT.equals(thingTypeUID)) {
-            return new ChatGPTHandler(thing, httpClientFactory, itemRegistry, eventPublisher);
+            return new ChatGPTHandler(thing, httpClientFactory);
         }
 
         return null;

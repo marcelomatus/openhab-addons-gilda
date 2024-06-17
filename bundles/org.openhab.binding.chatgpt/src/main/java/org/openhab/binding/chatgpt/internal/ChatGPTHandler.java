@@ -30,9 +30,7 @@ import org.eclipse.jetty.http.HttpStatus;
 import org.openhab.binding.chatgpt.internal.dto.ChatMessage;
 import org.openhab.binding.chatgpt.internal.dto.ChatRequestBody;
 import org.openhab.binding.chatgpt.internal.dto.ChatResponse;
-import org.openhab.core.events.EventPublisher;
 import org.openhab.core.io.net.http.HttpClientFactory;
-import org.openhab.core.items.ItemRegistry;
 import org.openhab.core.library.types.StringType;
 import org.openhab.core.thing.Channel;
 import org.openhab.core.thing.ChannelUID;
@@ -68,13 +66,10 @@ public class ChatGPTHandler extends BaseThingHandler {
     private String apiKey = "";
     private String apiUrl = "";
     private String modelUrl = "";
-
     private String lastPrompt = "";
-
     private List<String> models = List.of();
 
-    public ChatGPTHandler(Thing thing, HttpClientFactory httpClientFactory, ItemRegistry itemRegistry,
-            EventPublisher eventPublisher) {
+    public ChatGPTHandler(Thing thing, HttpClientFactory httpClientFactory) {
         super(thing);
         this.httpClient = httpClientFactory.getCommonHttpClient();
     }
