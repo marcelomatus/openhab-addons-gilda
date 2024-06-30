@@ -19,11 +19,7 @@ import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
@@ -67,6 +63,7 @@ import org.openhab.core.auth.client.oauth2.OAuthClientService;
 import org.openhab.core.auth.client.oauth2.OAuthException;
 import org.openhab.core.auth.client.oauth2.OAuthFactory;
 import org.openhab.core.auth.client.oauth2.OAuthResponseException;
+import org.openhab.core.library.types.OnOffType;
 import org.openhab.core.library.types.QuantityType;
 import org.openhab.core.library.types.StringType;
 import org.openhab.core.library.unit.Units;
@@ -132,7 +129,17 @@ public class LivisiBridgeHandler extends BaseBridgeHandler
 
     @Override
     public void handleCommand(final ChannelUID channelUID, final Command command) {
-        // not needed
+        if (CHANNEL_RESTART.equals(channelUID.getId())) {
+            commandRestart(command);
+        } else {
+            logger.debug("UNSUPPORTED channel {} for bridge {}.", channelUID.getId(), bridgeId);
+        }
+    }
+
+    private void commandRestart(Command command) {
+        if (command instanceof OnOffType && OnOffType.ON.equals(command)) {
+            commandRestart();
+        }
     }
 
     @Override
@@ -192,6 +199,9 @@ public class LivisiBridgeHandler extends BaseBridgeHandler
                 scheduleBridgeRefreshJob(bridgeDevice);
 
                 startWebSocket(bridgeDevice);
+
+                // Update the restart channel to OFF to enable a (new) restart command.
+                updateState(CHANNEL_RESTART, OnOffType.OFF);
             } else {
                 logger.debug("Failed to get bridge device, re-scheduling startClient.");
                 scheduleRestartClient(true);
@@ -819,6 +829,19 @@ public class LivisiBridgeHandler extends BaseBridgeHandler
     public void commandSetRollerShutterStop(final String deviceId, final ShutterActionType action) {
         executeCommand(deviceId, CapabilityDTO.TYPE_ROLLERSHUTTERACTUATOR,
                 (capabilityId) -> client.setRollerShutterAction(capabilityId, action));
+    }
+
+    /**
+     * Restarts the SHC (bridge) device
+     */
+    public void commandRestart() {
+        try {
+            client.setRestartAction(bridgeId);
+
+            updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.BRIDGE_OFFLINE, "Restarting ...");
+        } catch (IOException e) {
+            handleClientException(e);
+        }
     }
 
     private void executeCommand(final String deviceId, final String capabilityType,
