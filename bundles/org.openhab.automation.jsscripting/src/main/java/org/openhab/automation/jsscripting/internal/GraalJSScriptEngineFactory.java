@@ -92,6 +92,11 @@ public final class GraalJSScriptEngineFactory implements ScriptEngineFactory {
     }
 
     @Override
+    public boolean supportsPreCompilation() {
+        return true;
+    }
+
+    @Override
     public @Nullable ScriptDependencyTracker getDependencyTracker() {
         return jsDependencyTracker;
     }
