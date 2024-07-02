@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2023 Contributors to the openHAB project
+ * Copyright (c) 2010-2024 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -30,17 +30,18 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
+import org.openhab.binding.hue.internal.api.dto.clip2.MetaData;
+import org.openhab.binding.hue.internal.api.dto.clip2.ProductData;
+import org.openhab.binding.hue.internal.api.dto.clip2.Resource;
+import org.openhab.binding.hue.internal.api.dto.clip2.ResourceReference;
+import org.openhab.binding.hue.internal.api.dto.clip2.Resources;
+import org.openhab.binding.hue.internal.api.dto.clip2.enums.Archetype;
+import org.openhab.binding.hue.internal.api.dto.clip2.enums.ResourceType;
+import org.openhab.binding.hue.internal.api.dto.clip2.helper.Setters;
 import org.openhab.binding.hue.internal.config.Clip2BridgeConfig;
 import org.openhab.binding.hue.internal.connection.Clip2Bridge;
 import org.openhab.binding.hue.internal.connection.HueTlsTrustManagerProvider;
 import org.openhab.binding.hue.internal.discovery.Clip2ThingDiscoveryService;
-import org.openhab.binding.hue.internal.dto.clip2.MetaData;
-import org.openhab.binding.hue.internal.dto.clip2.ProductData;
-import org.openhab.binding.hue.internal.dto.clip2.Resource;
-import org.openhab.binding.hue.internal.dto.clip2.ResourceReference;
-import org.openhab.binding.hue.internal.dto.clip2.Resources;
-import org.openhab.binding.hue.internal.dto.clip2.enums.Archetype;
-import org.openhab.binding.hue.internal.dto.clip2.enums.ResourceType;
 import org.openhab.binding.hue.internal.exceptions.ApiException;
 import org.openhab.binding.hue.internal.exceptions.AssetNotLoadedException;
 import org.openhab.binding.hue.internal.exceptions.HttpUnauthorizedException;
@@ -365,13 +366,11 @@ public class Clip2BridgeHandler extends BaseBridgeHandler {
         }
 
         ThingUID legacyBridgeUID = legacyBridge.get().getUID();
-        return thingRegistry.getAll().stream() //
+        return thingRegistry.getAll().stream()
                 .filter(thing -> legacyBridgeUID.equals(thing.getBridgeUID())
-                        && V1_THING_TYPE_UIDS.contains(thing.getThingTypeUID())) //
-                .filter(thing -> {
-                    Object id = thing.getConfiguration().get(config);
-                    return (id instanceof String) && targetIdV1.endsWith("/" + (String) id);
-                }).findFirst();
+                        && V1_THING_TYPE_UIDS.contains(thing.getThingTypeUID())
+                        && thing.getConfiguration().get(config) instanceof String id && targetIdV1.endsWith("/" + id))
+                .findFirst();
     }
 
     /**
@@ -528,13 +527,15 @@ public class Clip2BridgeHandler extends BaseBridgeHandler {
     }
 
     private void onResourcesEventTask(List<Resource> resources) {
-        logger.debug("onResourcesEventTask() resource count {}", resources.size());
+        int numberOfResources = resources.size();
+        logger.debug("onResourcesEventTask() resource count {}", numberOfResources);
+        Setters.mergeLightResources(resources);
+        if (numberOfResources != resources.size()) {
+            logger.debug("onResourcesEventTask() merged to {} resources", resources.size());
+        }
         getThing().getThings().forEach(thing -> {
-            ThingHandler handler = thing.getHandler();
-            if (handler instanceof Clip2ThingHandler) {
-                resources.forEach(resource -> {
-                    ((Clip2ThingHandler) handler).onResource(resource);
-                });
+            if (thing.getHandler() instanceof Clip2ThingHandler clip2ThingHandler) {
+                clip2ThingHandler.onResources(resources);
             }
         });
     }

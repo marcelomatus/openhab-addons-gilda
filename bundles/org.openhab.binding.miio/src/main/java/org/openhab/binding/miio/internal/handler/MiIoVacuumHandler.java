@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2023 Contributors to the openHAB project
+ * Copyright (c) 2010-2024 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -171,7 +171,7 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
             }
             return null;
         });
-        map = new ExpiringCache<String>(CACHE_EXPIRY, () -> {
+        map = new ExpiringCache<>(CACHE_EXPIRY, () -> {
             try {
                 int ret = sendCommand(MiIoCommand.GET_MAP);
                 if (ret != 0) {
@@ -247,6 +247,11 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
 
         if (channelUID.getId().equals(RobotCababilities.WATERBOX_MODE.getChannel())) {
             sendCommand(MiIoCommand.SET_WATERBOX_MODE, "[" + command.toString() + "]");
+            forceStatusUpdate();
+            return;
+        }
+        if (channelUID.getId().equals(RobotCababilities.MOP_MODE.getChannel())) {
+            sendCommand(MiIoCommand.SET_MOP_MODE, "[" + command.toString() + "]");
             forceStatusUpdate();
             return;
         }
@@ -383,6 +388,9 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
         if (deviceCapabilities.containsKey(RobotCababilities.WATERBOX_MODE)) {
             safeUpdateState(RobotCababilities.WATERBOX_MODE.getChannel(), statusInfo.getWaterBoxMode());
         }
+        if (deviceCapabilities.containsKey(RobotCababilities.MOP_MODE)) {
+            safeUpdateState(RobotCababilities.MOP_MODE.getChannel(), statusInfo.getMopMode());
+        }
         if (deviceCapabilities.containsKey(RobotCababilities.WATERBOX_STATUS)) {
             safeUpdateState(RobotCababilities.WATERBOX_STATUS.getChannel(), statusInfo.getWaterBoxStatus());
         }
@@ -506,7 +514,7 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
                                 .toString());
                         break;
                     case 1:
-                        historyRecord.setStart(ZonedDateTime
+                        historyRecord.setEnd(ZonedDateTime
                                 .ofInstant(Instant.ofEpochSecond(value.longValue()), ZoneId.systemDefault())
                                 .toString());
                         break;
@@ -539,14 +547,16 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
     }
 
     private void updateHistoryRecord(HistoryRecordDTO historyRecordDTO) {
-        JsonObject historyRecord = new JsonObject();
+        JsonObject historyRecord = GSON.toJsonTree(historyRecordDTO).getAsJsonObject();
         if (historyRecordDTO.getStart() != null) {
-            historyRecord.addProperty("start", historyRecordDTO.getStart().split("\\+")[0]);
-            updateState(CHANNEL_HISTORY_START_TIME, new DateTimeType(historyRecordDTO.getStart().split("\\+")[0]));
+            historyRecord.addProperty("start", historyRecordDTO.getStart().split("\\+")[0].split("\\-")[0]);
+            updateState(CHANNEL_HISTORY_START_TIME,
+                    new DateTimeType(historyRecordDTO.getStart().split("\\+")[0].split("\\-")[0]));
         }
         if (historyRecordDTO.getEnd() != null) {
-            historyRecord.addProperty("end", historyRecordDTO.getEnd().split("\\+")[0]);
-            updateState(CHANNEL_HISTORY_END_TIME, new DateTimeType(historyRecordDTO.getEnd().split("\\+")[0]));
+            historyRecord.addProperty("end", historyRecordDTO.getEnd().split("\\+")[0].split("\\-")[0]);
+            updateState(CHANNEL_HISTORY_END_TIME,
+                    new DateTimeType(historyRecordDTO.getEnd().split("\\+")[0].split("\\-")[0]));
         }
         if (historyRecordDTO.getDuration() != null) {
             long duration = TimeUnit.SECONDS.toMinutes(historyRecordDTO.getDuration().longValue());
@@ -640,7 +650,7 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
                 }
             }
             for (RobotCababilities cmd : FEATURES_CHANNELS) {
-                if (isLinked(cmd.getChannel())) {
+                if (isLinked(cmd.getChannel()) && !cmd.getCommand().isBlank()) {
                     sendCommand(cmd.getCommand());
                 }
             }
@@ -703,6 +713,13 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
                 if (response.getResult().isJsonArray() && response.getResult().getAsJsonArray().size() > 0
                         && response.getResult().getAsJsonArray().get(0).isJsonArray()) {
                     updateHistoryRecordLegacy(response.getResult().getAsJsonArray().get(0).getAsJsonArray());
+                } else if (response.getResult().isJsonArray() && response.getResult().getAsJsonArray().size() > 0
+                        && response.getResult().getAsJsonArray().get(0).isJsonObject()) {
+                    final HistoryRecordDTO historyRecordDTO = GSON.fromJson(
+                            response.getResult().getAsJsonArray().get(0).getAsJsonObject(), HistoryRecordDTO.class);
+                    if (historyRecordDTO != null) {
+                        updateHistoryRecord(historyRecordDTO);
+                    }
                 } else if (response.getResult().isJsonObject()) {
                     final HistoryRecordDTO historyRecordDTO = GSON.fromJson(response.getResult().getAsJsonObject(),
                             HistoryRecordDTO.class);
@@ -710,7 +727,7 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
                         updateHistoryRecord(historyRecordDTO);
                     }
                 } else {
-                    logger.debug("Could not extract cleaning history record from: {}", response);
+                    logger.debug("Could not extract cleaning history record from: {}", response.getResult());
                 }
                 break;
             case GET_MAP:
@@ -734,11 +751,9 @@ public class MiIoVacuumHandler extends MiIoAbstractHandler {
             case GET_FW_FEATURES:
             case GET_CUSTOMIZED_CLEAN_MODE:
             case GET_MULTI_MAP_LIST:
-
             case SET_COLLECT_DUST:
             case SET_CLEAN_MOP_START:
             case SET_CLEAN_MOP_STOP:
-
                 for (RobotCababilities cmd : FEATURES_CHANNELS) {
                     if (response.getCommand().getCommand().contentEquals(cmd.getCommand())) {
                         updateState(cmd.getChannel(), new StringType(response.getResult().toString()));

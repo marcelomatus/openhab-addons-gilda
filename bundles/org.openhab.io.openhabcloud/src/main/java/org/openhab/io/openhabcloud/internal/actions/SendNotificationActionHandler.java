@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2023 Contributors to the openHAB project
+ * Copyright (c) 2010-2024 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -24,12 +24,15 @@ import org.openhab.io.openhabcloud.internal.CloudService;
  * This is a {@link ModuleHandler} implementation for {@link Action}s to send a notification to a specific cloud user.
  *
  * @author Christoph Weitkamp - Initial contribution
+ * @author Dan Cunningham - Extended notification enhancements
  */
 @NonNullByDefault
 public class SendNotificationActionHandler extends BaseNotificationActionHandler {
 
     public static final String TYPE_ID = "notification.SendNotification";
     public static final String EXTENDED_TYPE_ID = "notification.SendExtendedNotification";
+    public static final String EXTENDED2_TYPE_ID = "notification.SendExtended2Notification";
+
     public static final String PARAM_USER = "userId";
 
     private final String userId;
@@ -47,7 +50,8 @@ public class SendNotificationActionHandler extends BaseNotificationActionHandler
 
     @Override
     public @Nullable Map<String, Object> execute(Map<String, Object> context) {
-        cloudService.sendNotification(userId, message, icon, severity);
+        cloudService.sendNotification(userId, message, icon, severity, title, onClickAction, mediaAttachmentUrl,
+                actionButton1, actionButton2, actionButton3);
         return null;
     }
 }

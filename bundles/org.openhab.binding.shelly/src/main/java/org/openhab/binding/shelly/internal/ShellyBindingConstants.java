@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2023 Contributors to the openHAB project
+ * Copyright (c) 2010-2024 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -75,7 +75,9 @@ public class ShellyBindingConstants {
             THING_TYPE_SHELLYPLUS2PM_ROLLER, //
             THING_TYPE_SHELLYPLUSI4, //
             THING_TYPE_SHELLYPLUSI4DC, //
+            THING_TYPE_SHELLYPLUSDIMMER10V, //
             THING_TYPE_SHELLYPLUSHT, //
+            THING_TYPE_SHELLYPLUSHTG3, //
             THING_TYPE_SHELLYPLUSSMOKE, //
             THING_TYPE_SHELLYPLUSPLUGS, //
             THING_TYPE_SHELLYPLUSPLUGUS, //
@@ -104,6 +106,8 @@ public class ShellyBindingConstants {
             THING_TYPE_SHELLYBLUBUTTON, //
             THING_TYPE_SHELLYBLUDW, //
             THING_TYPE_SHELLYBLUMOTION, //
+            THING_TYPE_SHELLYBLUHT, //
+            THING_TYPE_SHELLYBLUGW, //
 
             THING_TYPE_SHELLYPROTECTED, //
             THING_TYPE_SHELLYUNKNOWN);
@@ -120,6 +124,7 @@ public class ShellyBindingConstants {
     public static final String PROPERTY_DEV_TYPE = "deviceType";
     public static final String PROPERTY_DEV_MODE = "deviceMode";
     public static final String PROPERTY_DEV_GEN = "deviceGeneration";
+    public static final String PROPERTY_DEV_AUTH = "deviceAuth";
     public static final String PROPERTY_GW_DEVICE = "gatewayDevice";
     public static final String PROPERTY_HWREV = "deviceHwRev";
     public static final String PROPERTY_HWBATCH = "deviceHwBatch";
@@ -175,6 +180,11 @@ public class ShellyBindingConstants {
     public static final String CHANNEL_EMETER_CURRENT = "current";
     public static final String CHANNEL_EMETER_PFACTOR = "powerFactor";
     public static final String CHANNEL_EMETER_RESETTOTAL = "resetTotals";
+    public static final String CHANNEL_GROUP_NMETER = "nmeter";
+    public static final String CHANNEL_NMETER_CURRENT = "ncurrent";
+    public static final String CHANNEL_NMETER_IXSUM = "ixsum";
+    public static final String CHANNEL_NMETER_MISMATCH = "nmismatch";
+    public static final String CHANNEL_NMETER_MTRESHHOLD = "nmTreshhold";
 
     public static final String CHANNEL_GROUP_SENSOR = "sensors";
     public static final String CHANNEL_SENSOR_TEMP = "temperature";
